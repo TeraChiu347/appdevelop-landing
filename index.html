@@ -158,12 +158,21 @@
       <img src="assets/contact.png" alt="準備好把繁瑣交給系統了嗎？立即加 LINE 或寄 Email 諮詢" loading="lazy" />
       <div class="contact-actions" aria-label="聯絡按鈕">
         <a class="contact-line" href="https://line.me/R/ti/p/@appdevelop" target="_blank" rel="noopener">立即加 LINE 聊聊需求：@appdevelop</a>
-        <a class="contact-email" href="mailto:service@apodevelop.com">寄 Email 諮詢：service@apodevelop.com</a>
+        <a class="contact-email" href="mailto:service@apodevelop.com" id="emailBtn">寄 Email 諮詢：service@apodevelop.com</a>
       </div>
     </section>
   </main>
 
+  <!-- 複製成功提示 -->
+  <div id="copyToast" style="
+    position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:#064E3B; color:#fff; padding:12px 24px; border-radius:999px;
+    font-size:15px; font-weight:700; pointer-events:none;
+    opacity:0; transition:opacity .25s, transform .25s; z-index:999;
+  ">✓ 已複製 Email！</div>
+
   <script>
+    // FAQ
     document.querySelectorAll('.faq-item').forEach((item) => {
       item.addEventListener('toggle', () => {
         if (!item.open) return;
@@ -172,6 +181,43 @@
         });
       });
     });
+
+    // Email：複製 + 嘗試開信箱
+    document.getElementById('emailBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const email = 'service@apodevelop.com';
+      const toast = document.getElementById('copyToast');
+
+      // 複製到剪貼簿
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).catch(() => fallbackCopy(email));
+      } else {
+        fallbackCopy(email);
+      }
+
+      // 嘗試開啟信箱
+      window.location.href = 'mailto:' + email;
+
+      // 顯示提示
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 2500);
+    });
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+    }
   </script>
 </body>
 </html>
