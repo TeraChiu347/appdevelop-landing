@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阿珀工具管理中心｜把散落各地的工具，收進一個你自己的管理中心</title>
+<meta name="description" content="阿珀工具管理中心是一份可以直接複製的 Google Sheet ＋ Apps Script，幫你記住每個工具部署在哪裡、怎麼用、改到第幾版，不用寫程式。">
+<style>
+  :root{
+    --ink:#211d18;
+    --paper:#fbf6ec;
+    --paper-alt:#f1e8d5;
+    --paper-deep:#e9dcc0;
+    --green:#24463a;
+    --green-deep:#16302a;
+    --green-ink:#f3ece0;
+    --gold:#c8a96b;
+    --gold-deep:#93732f;
+    --rule:#dccfaf;
+    --muted:#544d40;
+    --accent-text:#1d3d33;
+    --shadow:0 18px 40px -22px rgba(33,29,24,.45);
+    --font-display:"Songti TC","PMingLiU","Iowan Old Style",Georgia,serif;
+    --font-body:"PingFang TC","Microsoft JhengHei","Noto Sans TC",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#f3ecdd;
+      --paper:#1b1815;
+      --paper-alt:#242019;
+      --paper-deep:#2c261d;
+      --green:#4c8a72;
+      --green-deep:#153029;
+      --green-ink:#f3ecdd;
+      --gold:#dcbe8b;
+      --gold-deep:#e0c48f;
+      --rule:#3a342a;
+      --muted:#d3c9b6;
+      --accent-text:#a3dcc2;
+      --shadow:0 18px 44px -20px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f3ecdd;--paper:#1b1815;--paper-alt:#242019;--paper-deep:#2c261d;
+    --green:#4c8a72;--green-deep:#153029;--green-ink:#f3ecdd;
+    --gold:#dcbe8b;--gold-deep:#e0c48f;--rule:#3a342a;--muted:#d3c9b6;
+    --accent-text:#a3dcc2;
+    --shadow:0 18px 44px -20px rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"]{
+    --ink:#211d18;--paper:#fbf6ec;--paper-alt:#f1e8d5;--paper-deep:#e9dcc0;
+    --green:#24463a;--green-deep:#16302a;--green-ink:#f3ece0;
+    --gold:#c8a96b;--gold-deep:#93732f;--rule:#dccfaf;--muted:#544d40;
+    --accent-text:#1d3d33;
+    --shadow:0 18px 40px -22px rgba(33,29,24,.45);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  ::selection{background:var(--gold);color:var(--green-deep)}
+  :focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:40;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
+  .mark{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.02em}
+  .mark .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px color-mix(in srgb, var(--green) 18%, transparent)}
+  .nav-link{
+    font-family:var(--font-mono);font-size:12.5px;letter-spacing:.03em;
+    text-decoration:none;color:var(--muted);
+    border:1px solid var(--rule);padding:7px 14px;border-radius:3px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .nav-link:hover{color:var(--accent-text);border-color:var(--gold-deep)}
+
+  /* ---------- section rhythm ---------- */
+  section{padding:88px 0}
+  .ruled{
+    background-image:repeating-linear-gradient(var(--paper) 0 43px, var(--rule) 43px 44px);
+  }
+  .eyebrow{
+    font-family:var(--font-mono);font-size:13.5px;letter-spacing:.14em;
+    color:var(--gold-deep);text-transform:uppercase;font-weight:600;
+    display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-deep)}
+  h1,h2,h3{font-family:var(--font-display);font-weight:700;text-wrap:balance;margin:0}
+  h2{font-size:clamp(24px,3.4vw,34px);margin-bottom:14px}
+  .lede{color:var(--muted);font-size:16.5px;max-width:60ch}
+
+  /* ---------- hero ---------- */
+  .hero{padding-top:76px;padding-bottom:56px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .status-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;
+    background:var(--green);color:var(--green-ink);
+    padding:6px 12px 6px 10px;border-radius:3px;margin-bottom:22px;
+  }
+  .status-pill i{width:6px;height:6px;border-radius:50%;background:#8fe0b8;display:inline-block}
+  .hero h1{font-size:clamp(32px,4.6vw,50px);line-height:1.28;letter-spacing:.005em}
+  .hero h1 em{font-style:normal;color:var(--accent-text);border-bottom:3px solid var(--gold)}
+  .hero .lede{margin-top:20px;font-size:17.5px}
+  .hero-actions{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
+
+  .stamp-btn{
+    font-family:var(--font-mono);font-size:14px;letter-spacing:.03em;
+    background:var(--gold);color:var(--green-deep);
+    border:1.5px solid var(--green-deep);
+    padding:14px 26px;border-radius:2px;text-decoration:none;font-weight:700;
+    position:relative;display:inline-block;
+    box-shadow:3px 3px 0 var(--green-deep);
+    transform:rotate(-1.4deg);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .stamp-btn:hover{transform:rotate(0deg) translate(-1px,-1px);box-shadow:5px 5px 0 var(--green-deep)}
+  .stamp-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--green-deep)}
+
+  .text-link{
+    font-family:var(--font-mono);font-size:13px;text-decoration:none;color:var(--muted);
+    border-bottom:1px dashed var(--rule);padding-bottom:2px;
+  }
+  .text-link:hover{color:var(--accent-text);border-color:var(--gold-deep)}
+
+  /* mock dashboard card */
+  .specimen{position:relative}
+  .tag{
+    position:absolute;top:-14px;right:22px;z-index:2;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+    background:var(--green-deep);color:var(--green-ink);
+    padding:6px 10px;border-radius:2px;
+    transform:rotate(3deg);box-shadow:var(--shadow);
+  }
+  .mock{
+    background:var(--paper-alt);border:1px solid var(--rule);border-radius:9px;
+    box-shadow:var(--shadow);transform:rotate(-2.2deg);overflow:hidden;
+  }
+  .mock-bar{
+    display:flex;align-items:center;gap:6px;padding:10px 14px;
+    background:var(--paper-deep);border-bottom:1px solid var(--rule);
+  }
+  .mock-bar i{width:8px;height:8px;border-radius:50%;background:var(--rule)}
+  .mock-bar span{
+    margin-left:10px;font-family:var(--font-mono);font-size:10.5px;color:var(--muted);
+    background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:3px 10px;flex:1;
+  }
+  .mock-body{display:grid;grid-template-columns:76px 1fr;min-height:220px}
+  .mock-side{background:var(--green);padding:14px 10px}
+  .mock-side i{display:block;height:8px;background:color-mix(in srgb, var(--green-ink) 30%, transparent);border-radius:2px;margin-bottom:8px}
+  .mock-side i:nth-child(1){width:70%}
+  .mock-side i:nth-child(2){width:90%}
+  .mock-side i:nth-child(3){width:55%}
+  .mock-main{padding:16px}
+  .mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+  .mock-stats div{background:var(--paper);border:1px solid var(--rule);border-radius:5px;padding:8px}
+  .mock-stats b{display:block;font-family:var(--font-mono);font-size:15px;color:var(--accent-text)}
+  .mock-stats span{font-size:9.5px;color:var(--muted)}
+  .mock-cards{display:grid;gap:8px}
+  .mock-cards div{background:var(--paper);border:1px solid var(--rule);border-radius:5px;padding:9px 11px}
+  .mock-cards i{display:block;width:60%;height:7px;background:var(--rule);border-radius:2px;margin-bottom:6px}
+  .mock-cards em{font-style:normal;font-family:var(--font-mono);font-size:9px;color:var(--gold-deep);background:color-mix(in srgb, var(--gold) 22%, transparent);padding:2px 6px;border-radius:8px}
+
+  /* ---------- pain ---------- */
+  .pain-list{list-style:none;margin:34px 0 0;padding:0;display:grid;gap:0}
+  .pain-list li{
+    display:grid;grid-template-columns:32px 1fr;gap:16px;
+    padding:22px 0;border-top:1px solid var(--rule);font-size:19px;
+  }
+  .pain-list li:last-child{border-bottom:1px solid var(--rule)}
+  .pain-list li b{font-family:var(--font-mono);color:var(--gold-deep);font-weight:600}
+  .pain-close{margin-top:32px;font-family:var(--font-display);font-size:22px;line-height:1.6;color:var(--accent-text);max-width:56ch}
+
+  /* ---------- features ---------- */
+  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:34px;border-radius:6px;overflow:hidden}
+  .feat{background:var(--paper);padding:26px 26px 24px}
+  .feat .n{font-family:var(--font-mono);font-size:14px;color:var(--gold-deep);letter-spacing:.06em;font-weight:600}
+  .feat h3{font-size:21px;margin:10px 0 9px}
+  .feat p{margin:0;color:var(--muted);font-size:16px}
+  .feat.highlight{background:var(--paper-alt)}
+  .feat.highlight .n{color:var(--accent-text)}
+
+  /* ---------- steps ---------- */
+  .steps-list{margin-top:34px;display:grid;gap:0}
+  .step{
+    display:grid;grid-template-columns:64px 1fr;gap:22px;
+    padding:26px 0;border-top:1px solid var(--rule);align-items:start;
+  }
+  .step:last-child{border-bottom:1px solid var(--rule)}
+  .step .num{
+    font-family:var(--font-mono);font-size:13px;color:var(--green-ink);background:var(--green);
+    width:44px;height:44px;border-radius:3px;display:flex;align-items:center;justify-content:center;
+    transform:rotate(-2deg);
+  }
+  .step:nth-child(even) .num{transform:rotate(2deg)}
+  .step h3{font-size:20px;margin-bottom:7px}
+  .step p{margin:0;color:var(--muted);font-size:16.5px;max-width:58ch}
+  .step code{
+    font-family:var(--font-mono);font-size:14px;background:var(--paper-deep);
+    border:1px solid var(--rule);padding:1px 6px;border-radius:3px;color:var(--accent-text);
+  }
+
+  /* ---------- faq ---------- */
+  .faq-list{margin-top:34px;display:grid;gap:22px;max-width:70ch}
+  .faq-item summary{
+    cursor:pointer;font-family:var(--font-display);font-size:19.5px;font-weight:700;
+    padding:18px 0;border-top:1px solid var(--rule);list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"+";font-family:var(--font-mono);color:var(--gold-deep);font-size:22px}
+  .faq-item[open] summary::after{content:"–"}
+  .faq-item:last-child{border-bottom:1px solid var(--rule)}
+  .faq-item p{margin:0 0 20px;color:var(--muted);font-size:16.5px;max-width:58ch}
+
+  /* ---------- final cta ---------- */
+  .final{
+    background:var(--green);color:var(--green-ink);border-radius:10px;
+    padding:56px 44px;margin:0 auto;max-width:1040px;
+    display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;
+    box-shadow:var(--shadow);
+  }
+  .final h2{color:var(--green-ink)}
+  .final p{color:color-mix(in srgb, var(--green-ink) 78%, transparent);margin:10px 0 0;max-width:44ch}
+  .final .stamp-btn{background:var(--gold);color:var(--green-deep);border-color:var(--green-ink);box-shadow:3px 3px 0 var(--green-ink)}
+  .final .stamp-btn:hover{box-shadow:5px 5px 0 var(--green-ink)}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--rule);padding:34px 0 50px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  footer small{font-family:var(--font-mono);color:var(--muted);font-size:12px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .stamp-btn{transition:none}
+  }
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr;gap:44px}
+    .feat-grid{grid-template-columns:1fr}
+    .final{flex-direction:column;align-items:flex-start;text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="mark"><span class="dot"></span>阿珀工具管理中心</div>
+    <a class="nav-link" href="https://www.threads.com/@apodevelop" target="_blank" rel="noopener">@apodevelop · 阿珀開發</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="status-pill"><i></i>V1.1 · 已上線 · 免費複製</span>
+        <h1>把散落各地的工具，<br>收進<em>你自己</em>的工具管理中心</h1>
+        <p class="lede">阿珀工具管理中心是一份可以直接複製的 Google Sheet ＋ Apps Script，幫你記住每個工具部署在哪裡、怎麼用、改到第幾版——不用寫程式，複製一份就是你的。</p>
+        <div class="hero-actions">
+          <a class="stamp-btn" href="https://docs.google.com/spreadsheets/d/1K_s-yrfft4QS53ymkfZGSrL6J-bBN1EW7X0P9UBBKcI/edit?usp=sharing" target="_blank" rel="noopener">建立我的副本 →</a>
+          <a class="text-link" href="#steps">看安裝流程 ↓</a>
+        </div>
+      </div>
+      <div class="specimen reveal">
+        <span class="tag">REV. 1.1 · TOOL-0000</span>
+        <div class="mock">
+          <div class="mock-bar"><i></i><i></i><i></i><span>script.google.com/…/exec</span></div>
+          <div class="mock-body">
+            <div class="mock-side"><i></i><i></i><i></i></div>
+            <div class="mock-main">
+              <div class="mock-stats">
+                <div><b>21</b><span>工具總數</span></div>
+                <div><b>16</b><span>已上線</span></div>
+                <div><b>3</b><span>待補網址</span></div>
+              </div>
+              <div class="mock-cards">
+                <div><i></i><em>已上線</em></div>
+                <div><i></i><em>開發中</em></div>
+                <div><i></i><em>已上線</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ruled reveal">
+    <div class="wrap">
+      <span class="eyebrow">為什麼會有這個</span>
+      <h2>做工具的人，通常不擅長記住工具</h2>
+      <ul class="pain-list">
+        <li><b>01</b>部署好的網址，三個月後想不起來存在哪一個資料夾。</li>
+        <li><b>02</b>工具改到第幾版、上次修了什麼，只留在自己腦子裡。</li>
+        <li><b>03</b>客戶或學生問起某個系統怎麼用，翻遍聊天紀錄找不到。</li>
+      </ul>
+      <p class="pain-close">阿珀工具管理中心不是又一套要重新學的系統——它就是一張你已經會用的 Google Sheet，只是多了一層好找、好記的介面。</p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <span class="eyebrow">工具管理中心裡有什麼</span>
+      <h2>四件事，顧好你的工具管理中心</h2>
+      <div class="feat-grid">
+        <div class="feat highlight"><span class="n">01 · 亮點</span><h3>快速新增，貼上就建檔</h3><p>網頁側邊「快速新增」有空白範本，你可以複製後貼上，先跟 ChatGPT、Claude 對話整理好工具資料，貼進一個文字框、按一下，就會自動建立工具、連結、版本紀錄，不用逐格填表單。</p></div>
+        <div class="feat"><span class="n">02 · 總覽</span><h3>儀表板統計</h3><p>你有幾個工具上線、幾個還在測試、還有幾個網址沒補齊，一目瞭然，不用每一筆都點開確認。</p></div>
+        <div class="feat"><span class="n">03 · 開箱</span><h3>複製即可用</h3><p>建立副本後資料庫自動建好，打開就有專屬的「開始使用」頁引導你走完剩下的步驟。</p></div>
+        <div class="feat"><span class="n">04 · 命名</span><h3>隨你改名字</h3><p>想叫什麼名字都行，你只要在黃色高亮的欄位改完就生效，不用碰任何程式碼。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="steps" class="ruled reveal">
+    <div class="wrap">
+      <span class="eyebrow">怎麼開始</span>
+      <h2>四步驟，變成你自己的系統</h2>
+      <div class="steps-list">
+        <div class="step"><div class="num">01</div><div><h3>建立你的副本</h3><p>點上面的按鈕開啟連結，選 <code>檔案 → 建立副本</code>，複製到你自己的 Google 帳號下。</p></div></div>
+        <div class="step"><div class="num">02</div><div><h3>跳出授權畫面很正常</h3><p>這是你自己的私人工具，看到「未經驗證」不用擔心，點 <code>進階 → 前往（不安全）→ 允許</code> 就好。</p></div></div>
+        <div class="step"><div class="num">03</div><div><h3>資料庫自動建好</h3><p>打開後會看到「開始使用」分頁，把黃色欄位改成你的名稱，會顯示在網頁標題和左上角。</p></div></div>
+        <div class="step"><div class="num">04</div><div><h3>部署拿到專屬網址</h3><p>上方選單裡的 <code>部署說明</code>，照著步驟按一次，就是完全屬於你的工具管理網站了。</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="wrap">
+      <span class="eyebrow">常見問題</span>
+      <h2>開始前，先回答三件事</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>要付費嗎？</summary>
+          <p>不用。複製之後完全是你自己的 Google 帳號在跑，沒有訂閱費，也沒有使用期限。</p>
+        </details>
+        <details class="faq-item">
+          <summary>我不會寫程式，可以用嗎？</summary>
+          <p>可以，全程照畫面點選就好，不需要寫一行程式。真的卡住的話，Threads 私訊 @apodevelop 我幫你看。</p>
+        </details>
+        <details class="faq-item">
+          <summary>資料放在哪裡，安全嗎？</summary>
+          <p>資料全部留在你自己的 Google 帳號和試算表裡，只有你自己看得到、改得到，跟原始範本完全獨立。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="final wrap">
+      <div>
+        <h2>你的工具，值得一個自己的管理中心</h2>
+        <p>免費複製，五分鐘內就能開始使用。</p>
+      </div>
+      <a class="stamp-btn" href="https://docs.google.com/spreadsheets/d/1K_s-yrfft4QS53ymkfZGSrL6J-bBN1EW7X0P9UBBKcI/edit?usp=sharing" target="_blank" rel="noopener">建立我的副本 →</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <small>阿珀開發 · 為你打造專屬行政助理</small>
+    <a class="nav-link" href="https://www.threads.com/@apodevelop" target="_blank" rel="noopener">@apodevelop</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if(prefersReduced || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
