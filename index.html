@@ -40,6 +40,12 @@
     .hs-cta{left:88.7%;top:2.7%;width:8.7%;height:8.0%;}
     .hs-book{left:5.3%;top:57.9%;width:14.0%;height:7.3%;}
     .hs-more{left:20.7%;top:57.9%;width:12.4%;height:7.3%;}
+
+    .service-topbar{position:sticky;top:0;z-index:30;background:#24463a;color:#fff;box-shadow:0 4px 15px rgba(21,52,40,.15);}
+    .service-topbar-inner{max-width:1280px;margin:auto;padding:10px 24px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;}
+    .service-topbar-label{font-size:12px;font-weight:700;color:#d7c59c;letter-spacing:.1em;}
+    .service-topbar a{text-decoration:none;color:#fff;font-size:14px;font-weight:700;padding:5px 10px;border-radius:6px;transition:background .2s;}
+    .service-topbar a:hover,.service-topbar a:focus-visible{background:rgba(255,255,255,.16);outline-offset:2px;}
     .mobile-nav{display:none; position:sticky; top:0; z-index:20; padding:10px 12px; gap:8px; overflow:auto; background:rgba(255,253,248,.94); backdrop-filter:blur(12px); border-bottom:1px solid rgba(221,231,222,.9); box-shadow:0 10px 30px rgba(23,32,42,.05);}
     .mobile-nav a{flex:0 0 auto; text-decoration:none; color:var(--brand); border:1px solid var(--line); background:#fffdf8; padding:8px 12px; border-radius:999px; font-size:14px; font-weight:700; white-space:nowrap;}
     .mobile-nav .primary{background:var(--brand); color:white; border-color:var(--brand);}
@@ -82,6 +88,7 @@
     .directory-more{margin-top:5px;color:#24463a;font-weight:800;font-size:14px;border-bottom:1px solid #c8a96b;padding-bottom:4px;}
     @media(max-width:680px){.directory-grid{grid-template-columns:1fr}.directory-card{padding:24px}.service-directory{scroll-margin-top:65px;}}
     @media (max-width: 820px){
+      .service-topbar{display:none;}
       .mobile-nav{display:flex;}
       .hotspot{display:none;}
       .section{scroll-margin-top:58px;}
@@ -99,9 +106,17 @@
   </style>
 </head>
 <body>
+  <nav class="service-topbar" aria-label="服務分頁快速導覽">
+    <div class="service-topbar-inner">
+      <span class="service-topbar-label">探索阿珀服務</span>
+      <a href="/digital/">數位營運系統與流程整合 ↗</a>
+      <a href="/services/email-newsletter/">電子報代發與名單維護 ↗</a>
+    </div>
+  </nav>
   <nav class="mobile-nav" aria-label="手機版導覽">
     <a href="#services">服務項目</a>
-    <a href="#service-pages">完整服務</a>
+    <a href="/digital/">數位營運</a>
+    <a href="/services/email-newsletter/">電子報代發</a>
     <a href="#process">開發流程</a>
     <a href="#content">品牌內容</a>
     <a href="#about">關於阿珀</a>
