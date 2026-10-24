@@ -67,6 +67,20 @@
     .contact-actions a:focus-visible{outline:3px solid rgba(15,107,79,.55); background:rgba(15,107,79,.08);}
     .contact-line{left:6.1%; top:53.9%; width:21.0%; height:10.2%;}
     .contact-email{left:28.2%; top:53.9%; width:17.0%; height:10.2%;}
+
+    .service-directory{padding:clamp(42px,6vw,86px) 20px;background:#f7f1e7;color:#293b33;scroll-margin-top:78px;}
+    .directory-wrap{max-width:1120px;margin:auto;}
+    .directory-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:#957a4d;margin:0 0 10px;}
+    .service-directory h2{font-size:clamp(26px,3.2vw,38px);line-height:1.4;color:#24463a;margin:0 0 12px;}
+    .directory-intro{color:#66746b;line-height:1.8;margin:0 0 26px;}
+    .directory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+    .directory-card{display:flex;flex-direction:column;align-items:flex-start;gap:13px;background:#fffdf8;border:1px solid #dfdfd5;border-radius:18px;padding:30px;text-decoration:none;box-shadow:0 12px 32px rgba(36,70,58,.05);transition:transform .2s,border-color .2s,box-shadow .2s;}
+    .directory-card:hover,.directory-card:focus-visible{transform:translateY(-3px);border-color:#bca576;box-shadow:0 17px 36px rgba(36,70,58,.10);outline-offset:3px;}
+    .directory-type{font-size:12px;font-weight:800;color:#8c734a;letter-spacing:.06em;}
+    .directory-card strong{font-size:clamp(20px,2vw,25px);color:#24463a;line-height:1.45;}
+    .directory-card>span:nth-of-type(2){font-size:15px;color:#596a60;line-height:1.8;flex:1;}
+    .directory-more{margin-top:5px;color:#24463a;font-weight:800;font-size:14px;border-bottom:1px solid #c8a96b;padding-bottom:4px;}
+    @media(max-width:680px){.directory-grid{grid-template-columns:1fr}.directory-card{padding:24px}.service-directory{scroll-margin-top:65px;}}
     @media (max-width: 820px){
       .mobile-nav{display:flex;}
       .hotspot{display:none;}
@@ -87,6 +101,7 @@
 <body>
   <nav class="mobile-nav" aria-label="手機版導覽">
     <a href="#services">服務項目</a>
+    <a href="#service-pages">完整服務</a>
     <a href="#process">開發流程</a>
     <a href="#content">品牌內容</a>
     <a href="#about">關於阿珀</a>
@@ -121,6 +136,29 @@
     <section id="content" class="section" aria-label="延伸支援服務">
       <h2 class="sr-only">Excel 微型系統設計與品牌內容規劃代操支援</h2>
       <img src="assets/support.png" alt="延伸支援服務：Excel 微型系統設計、品牌內容規劃與代操支援" loading="lazy" />
+    </section>
+
+
+    <section class="service-directory" id="service-pages" aria-labelledby="service-directory-title">
+      <div class="directory-wrap">
+        <p class="directory-eyebrow">APO SERVICES · 深入了解</p>
+        <h2 id="service-directory-title">從日常營運的難題，找到合適的解法。</h2>
+        <p class="directory-intro">不一定需要大系統。阿珀陪你從現有流程出發，選擇最需要的支援。</p>
+        <div class="directory-grid">
+          <a class="directory-card" href="/digital/" aria-label="了解數位營運系統與流程整合服務">
+            <span class="directory-type">數位系統與流程</span>
+            <strong>數位營運系統／流程整合</strong>
+            <span>LINE 會員營運、試算表自動化、既有平台串接與微型工具開發。</span>
+            <span class="directory-more">了解服務內容 <span aria-hidden="true">↗</span></span>
+          </a>
+          <a class="directory-card" href="/services/email-newsletter/" aria-label="了解電子報代發與名單維護服務">
+            <span class="directory-type">客戶聯繫與內容支援</span>
+            <strong>電子報代發與名單維護</strong>
+            <span>沿用企業 Gmail／Workspace，定期寄送、整理名單，讓客戶聯繫有節奏。</span>
+            <span class="directory-more">查看合作方案 <span aria-hidden="true">↗</span></span>
+          </a>
+        </div>
+      </div>
     </section>
 
     <section id="process" class="section" aria-label="合作流程">
