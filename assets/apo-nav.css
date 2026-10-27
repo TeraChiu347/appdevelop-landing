@@ -1,0 +1,21 @@
+/* ApoDevelop shared global navigation */
+.apo-site-header{position:sticky;top:0;z-index:1000;background:rgba(250,248,243,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e1e6de;color:#293b33;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif}
+.apo-site-header *{box-sizing:border-box}
+.apo-nav{max-width:1300px;min-height:78px;padding:8px 28px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.apo-brand{display:block;flex:none}
+.apo-brand img{display:block;width:169px;height:60px;object-fit:contain}
+.apo-menu-toggle{display:none;border:1px solid #d8dfd7;border-radius:9px;padding:8px 12px;background:white;color:#24463a;font-size:14px;font-weight:700;cursor:pointer}
+.apo-links{display:flex;align-items:center;gap:clamp(13px,2vw,29px);font-size:14px;font-weight:700}
+.apo-links a,.apo-drop summary{color:#293b33;text-decoration:none;white-space:nowrap;cursor:pointer}
+.apo-links a:hover,.apo-drop summary:hover,.apo-links a[aria-current=page]{color:#37745b}
+.apo-drop{position:relative}
+.apo-drop summary{list-style:none;display:flex;align-items:center;gap:5px}
+.apo-drop summary::-webkit-details-marker{display:none}
+.apo-dropdown{position:absolute;top:calc(100% + 21px);left:-22px;min-width:290px;display:grid;gap:2px;padding:10px;background:#fff;border:1px solid #e1e6de;border-radius:13px;box-shadow:0 20px 38px #183b2d1c}
+.apo-drop:not([open]) .apo-dropdown{display:none}
+.apo-dropdown a{display:block;padding:11px 13px;border-radius:8px;line-height:1.5}
+.apo-dropdown a:hover,.apo-dropdown a:focus-visible{background:#f1f5ef}
+.apo-links .apo-nav-cta{background:#24463a;color:#fff;padding:10px 18px;border-radius:9px}
+.apo-links .apo-nav-cta:hover{background:#32604e;color:#fff}
+.apo-links a:focus-visible,.apo-menu-toggle:focus-visible,.apo-drop summary:focus-visible{outline:2px solid #c8a96b;outline-offset:4px}
+@media(max-width:920px){.apo-nav{min-height:69px;padding:7px 18px}.apo-brand img{width:145px;height:52px}.apo-menu-toggle{display:block}.apo-links{display:none;position:absolute;top:100%;left:0;right:0;padding:16px 20px 22px;background:#faf8f3;border-bottom:1px solid #e1e6de;box-shadow:0 16px 22px #17372d12;flex-direction:column;align-items:stretch;gap:0}.apo-links.is-open{display:flex}.apo-links>a,.apo-drop>summary{display:flex;align-items:center;min-height:46px;padding:10px 8px}.apo-drop{width:100%}.apo-dropdown{position:static;min-width:0;box-shadow:none;margin:0 0 8px;background:#fff}.apo-dropdown a{white-space:normal}.apo-links .apo-nav-cta{justify-content:center;margin-top:10px;text-align:center}}
