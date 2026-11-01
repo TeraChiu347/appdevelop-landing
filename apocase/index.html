@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#24463a">
+  <link rel="canonical" href="https://www.apodevelop.com/apocase/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ApoCase 案件中心｜阿珀開發">
+  <meta property="og:description" content="從報價不用重打，到整個案件都管得好。報價、回簽、資料、進度與收款，在同一個案件裡管理。">
+  <meta property="og:url" content="https://www.apodevelop.com/apocase/">
+  <meta name="description" content="ApoCase 案件中心，阿珀開發自研的接案管理系統。常用品項不用重打，從報價、回簽、收款與發票到驗收結案，讓資料接著用、案件接著管理。">
+  <title>ApoCase 案件中心｜阿珀開發作品集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--green:#24463a;--green-dark:#1c392f;--gold:#c8a96b;--cream:#f7f3ea;--paper:#fffdf8;--ink:#263c33;--muted:#636d63;--line:#dcded3;--gray:#e9eae5;--serif:"Noto Serif TC",serif;--sans:"Noto Sans TC",sans-serif;--width:1200px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:105px}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
+    body,button,a{-webkit-tap-highlight-color:transparent}
+    a{color:inherit;text-decoration:none}button{font:inherit}svg{display:block;flex-shrink:0}::selection{background:#dce2d6;color:var(--green)}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+    .container{width:min(var(--width),calc(100% - 96px));margin-inline:auto}
+    .skip-link{position:fixed;left:20px;top:-100px;z-index:200;padding:10px 20px;background:var(--green);color:white}.skip-link:focus{top:14px}
+    .icon{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+    .arrow{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .symbol-library{position:absolute;width:0;height:0;overflow:hidden}
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(247,243,234,.97);border-bottom:1px solid rgba(36,70,58,.16)}
+    .header-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .brand{display:flex;align-items:center;gap:13px;white-space:nowrap}.brand-word{font-family:Georgia,serif;font-size:37px;line-height:1;letter-spacing:-2px}.brand-divider{height:28px;width:1px;background:var(--gold)}.brand-name{display:flex;flex-direction:column;line-height:1.5;font-size:13px;letter-spacing:.14em;font-weight:500}.brand-name small{font-family:Arial,sans-serif;font-size:8px;letter-spacing:.17em;font-weight:400}
+    .nav{display:flex;align-items:center;gap:28px;font-size:13px}.nav a{position:relative;transition:color .2s}.nav a:not(.nav-contact)::after{content:"";position:absolute;bottom:-9px;left:0;width:0;height:1px;background:var(--green);transition:width .2s}.nav a:hover::after,.nav a[aria-current="location"]::after{width:100%}.nav-contact{border:1px solid var(--gold);padding:9px 17px;display:flex;align-items:center;gap:18px}.nav-contact:hover{background:var(--green);color:var(--cream)}
+    .menu-toggle{display:none;width:43px;height:43px;border:1px solid var(--line);background:none;align-items:center;justify-content:center;color:var(--green)}
+    .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.18em;font-weight:500;display:flex;align-items:center;gap:13px;line-height:1.6}.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);flex-shrink:0}.eyebrow .en{font-family:Arial,sans-serif;letter-spacing:.15em}
+    .hero{padding:66px 0 35px}.hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:35px}.hero-index{font-family:Georgia,serif;font-size:13px;color:var(--muted);letter-spacing:.08em}
+    .hero-grid{display:grid;grid-template-columns:1fr 1.16fr;gap:64px;align-items:center}.hero-copy{padding:15px 0 20px}.product-name{margin:0 0 25px;font-weight:400;line-height:1.1}.product-en{display:block;font-family:Georgia,"Noto Serif TC",serif;letter-spacing:-.055em;font-size:clamp(70px,7vw,98px)}.product-zh{display:block;font-family:var(--serif);font-size:25px;letter-spacing:.17em;margin-top:17px;font-weight:500}.hero-headline{font-family:var(--serif);font-weight:600;font-size:clamp(24px,2.5vw,33px);line-height:1.7;letter-spacing:.015em;margin:0 0 20px}.hero-copy>p{font-size:14px;color:var(--muted);line-height:2;max-width:405px;margin:0 0 30px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:35px;font-size:14px;font-weight:500;padding:13px 24px;min-height:52px;border:1px solid var(--gold);transition:background .2s,color .2s,transform .2s}.button:hover{transform:translateY(-2px)}.button-primary{background:var(--green);color:var(--cream);border-color:var(--green)}.button-primary:hover{background:var(--green-dark)}.hero-actions{display:flex;gap:24px;align-items:center}.text-link{display:inline-flex;gap:8px;align-items:center;font-size:13px;border-bottom:1px solid var(--gold);padding:5px 0}.text-link:hover{color:#50674c}
+    figure{margin:0}.hero-visual{align-self:stretch;display:flex;flex-direction:column;justify-content:center}.image-frame{background:var(--paper);border:1px solid #d6d9cf;padding:10px;box-shadow:0 18px 40px -30px rgba(36,70,58,.25)}.frame-bar{height:27px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 7px;color:#7a8177}.frame-dots{display:flex;gap:5px}.frame-dots i{width:4px;height:4px;border-radius:50%;background:#b9bfb5}.frame-title{font-family:Arial,sans-serif;letter-spacing:.18em;font-size:8px}.frame-bar .icon{width:12px;height:12px}
+    /* 換圖方式：將下方指定的 .placeholder 元素，替換為 <img class="screenshot-image" src="你的圖片路徑" alt="畫面說明">。如需維持單一 HTML 檔，可把 src 改為圖片的 data URI。 */
+    .placeholder{background:var(--gray);position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:#6a7369;overflow:hidden;aspect-ratio:16/11}.placeholder::before,.placeholder::after{content:"";position:absolute;width:22px;height:22px;border-color:#c6cbc2;border-style:solid;pointer-events:none}.placeholder::before{left:20px;top:20px;border-width:1px 0 0 1px}.placeholder::after{right:20px;bottom:20px;border-width:0 1px 1px 0}.placeholder .icon{width:36px;height:36px;stroke:#8e998b;stroke-width:1}.placeholder-label{font-size:13px;letter-spacing:.06em}.placeholder small{font-family:Arial,sans-serif;font-size:9px;letter-spacing:.2em;color:#8b9388}.screenshot-image{display:block;width:100%;height:auto;object-fit:contain;background:var(--gray)}
+    .hero-visual figcaption{display:flex;justify-content:space-between;gap:14px;font-size:11px;color:var(--muted);padding:14px 0}.caption-index{font-family:Georgia,serif;color:#788273}
+    .hero-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:47px;padding-top:22px;gap:20px}.hero-audience{display:flex;gap:22px;font-size:11px;letter-spacing:.07em;color:var(--muted)}.hero-audience span+span{padding-left:22px;border-left:1px solid #cbd0c3}.scroll-cue{display:flex;gap:14px;align-items:center;font-family:Arial,sans-serif;font-size:9px;letter-spacing:.16em;color:var(--muted)}.scroll-cue .arrow{width:16px;height:16px}
+    .section{padding:105px 0}.section-title{font-family:var(--serif);font-size:clamp(27px,3.1vw,39px);font-weight:600;line-height:1.6;letter-spacing:.025em;margin:21px 0 18px}.section-intro{font-size:14px;line-height:2;color:var(--muted);margin:0;max-width:560px}.section-heading-row{display:flex;justify-content:space-between;align-items:flex-end;gap:36px;margin-bottom:48px}.section-heading-row .section-title{margin-bottom:0}.section-heading-row>.section-intro{max-width:345px;padding-bottom:5px}
+    .pain-section{padding-top:80px}.pain-layout{display:grid;grid-template-columns:.8fr 1.45fr;gap:82px}.pain-intro{padding-top:5px}.pain-intro .section-title{margin-bottom:21px}.pain-intro .section-intro{max-width:280px}.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.pain-card{padding:26px 25px 27px;background:rgba(255,253,248,.6);border:1px solid #dedfd4;min-height:222px}.pain-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:21px}.pain-card .icon{width:27px;height:27px}.small-number{font-family:Georgia,serif;font-size:12px;color:#8a9386}.pain-card h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 9px;line-height:1.7}.pain-card p{font-size:12px;line-height:1.95;color:var(--muted);margin:0}
+    .flow-section{background:var(--green);color:var(--cream);padding:77px 0 74px}.flow-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}.flow-heading .section-title{font-size:33px;margin-bottom:0}.flow-heading .eyebrow{color:#dce2d4}.flow-heading>p{font-size:12px;color:#d0d8cb;max-width:265px;line-height:2;margin:0 0 6px}.timeline{padding:0;margin:54px 0 43px;list-style:none;display:grid;grid-template-columns:repeat(7,1fr)}.timeline li{position:relative;padding-right:12px}.timeline li::after{content:"";position:absolute;height:1px;background:#64796a;left:37px;right:7px;top:18px}.timeline li:last-child::after{display:none}.step-count{display:flex;align-items:center;justify-content:center;width:37px;height:37px;border:1px solid #718471;border-radius:50%;font-family:Georgia,serif;font-size:12px;margin-bottom:22px;background:var(--green);position:relative;z-index:1}.timeline li:first-child .step-count{border-color:var(--gold);color:#ead8ad}.timeline h3{font-family:var(--serif);font-size:16px;font-weight:500;letter-spacing:.02em;margin:0 0 7px}.timeline p{font-size:10px;line-height:1.85;color:#c8d2c5;margin:0;max-width:120px}.flow-note{border-top:1px solid #536e5d;padding-top:23px;display:flex;align-items:center;justify-content:space-between;gap:25px;color:#d4dccf;font-size:12px}.flow-note span:first-child{display:flex;align-items:center;gap:10px}.flow-note .icon{width:16px;height:16px;color:var(--gold)}.flow-note small{font-family:Arial,sans-serif;font-size:9px;letter-spacing:.16em;color:#c7d0c2}
+    .features-section{background:var(--paper)}.feature-columns{display:grid;grid-template-columns:1.12fr 1fr;border:1px solid var(--line)}.feature-column{padding:37px 40px 17px}.feature-column+ .feature-column{border-left:1px solid var(--line);background:#f5f5ef}.column-title{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:25px;margin-bottom:0}.column-title .eyebrow{font-size:10px;letter-spacing:.12em}.column-title h3{font-family:var(--serif);font-size:25px;font-weight:500;margin:8px 0 0}.column-title>.icon{width:34px;height:34px;stroke:#75866f;stroke-width:1}.features-list{list-style:none;margin:0;padding:0}.feature-item{display:grid;grid-template-columns:24px 1fr;gap:12px;padding:20px 0;border-bottom:1px solid #e1e3d9}.feature-item:last-child{border-bottom:0}.feature-item>.icon{width:17px;height:17px;margin-top:6px;color:#6b7e63}.feature-item h4{font-size:14px;font-weight:500;margin:0 0 4px;line-height:1.8}.feature-item p{font-size:12px;color:var(--muted);line-height:1.95;margin:0}.client-note{margin:29px 0 16px;padding:20px 22px;border-left:2px solid var(--gold);background:#ecefe6;font-family:var(--serif);font-size:17px;line-height:1.9}.client-note small{display:block;font-family:var(--sans);font-size:11px;margin-top:8px;color:var(--muted);line-height:1.8}
+    .gallery-heading-note{font-family:Arial,sans-serif;font-size:10px;letter-spacing:.15em;color:var(--muted);padding-bottom:7px}.gallery-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:40px 35px}.gallery-item .placeholder{aspect-ratio:16/10}.gallery-item:nth-child(2) .placeholder{aspect-ratio:16/11.5}.gallery-item:nth-child(2){padding:0 40px 0 65px}.gallery-item:nth-child(3) .placeholder,.gallery-item:nth-child(4) .placeholder{aspect-ratio:16/10}.gallery-item figcaption{padding-top:16px;display:grid;grid-template-columns:26px 1fr;gap:10px}.gallery-item .caption-index{font-size:12px;padding-top:5px}.gallery-item h3{font-family:var(--serif);font-size:19px;font-weight:500;margin:0 0 4px}.gallery-item p{font-size:12px;margin:0;color:var(--muted);line-height:1.9}.mobile-mat{background:#e2e4dd;padding:27px 0;display:flex;justify-content:center;border:1px solid #d6d9cf}.mobile-shell{width:57%;border:1px solid #bcc3b7;border-radius:16px;background:var(--paper);padding:10px 7px 12px;max-width:210px;box-shadow:0 6px 15px -12px #53674a}.mobile-notch{height:4px;width:25px;margin:0 auto 8px;border-radius:3px;background:#c7cec1}.gallery-item .mobile-shell .placeholder{aspect-ratio:9/14.5;gap:11px}.mobile-shell .placeholder-label{font-size:10px;letter-spacing:0;text-align:center;padding:0 12px}.mobile-shell .placeholder small{font-size:7px}.mobile-shell .placeholder .icon{width:28px;height:28px}.mobile-shell .placeholder::before,.mobile-shell .placeholder::after{width:12px;height:12px}.mobile-shell .placeholder::before{left:12px;top:12px}.mobile-shell .placeholder::after{right:12px;bottom:12px}
+    .tech-section{border-top:1px solid var(--line);padding:70px 0 86px}.tech-layout{display:grid;grid-template-columns:.8fr 1.45fr;gap:82px}.tech-section .section-title{font-size:31px}.tech-items{display:grid;grid-template-columns:1fr 1fr;gap:30px 36px}.tech-item{padding-top:17px;border-top:1px solid #c9cfc0}.tech-item .icon{width:23px;height:23px;color:#667d5f;margin-bottom:15px}.tech-item h3{font-family:var(--serif);font-size:17px;line-height:1.8;font-weight:600;margin:0 0 8px}.tech-item p{font-size:12px;color:var(--muted);line-height:1.95;margin:0}.tech-item code{font:inherit;overflow-wrap:anywhere}
+    .contact-section{background:var(--green);color:var(--cream);padding:76px 0 65px}.contact-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:65px;align-items:center}.contact-section .eyebrow{font-size:10px;color:#dce2d6}.contact-section h2{font-family:var(--serif);font-size:clamp(27px,3.3vw,39px);line-height:1.7;font-weight:500;margin:21px 0 0;letter-spacing:.02em}.contact-copy p{font-size:13px;line-height:2;color:#d2dbce;max-width:340px;margin:0 0 25px}.button-light{border-color:var(--gold);color:var(--cream);background:transparent}.button-light:hover{background:var(--cream);color:var(--green)}.contact-footnote{margin:38px 0 0;padding-top:22px;border-top:1px solid #526e5b;color:#bccbb9;font-size:11px;letter-spacing:.035em}
+    .site-footer{background:var(--green-dark);color:#d6dfcf;padding:26px 0}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:25px}.footer-brand{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.1em}.footer-brand span:first-child{font-family:Georgia,serif;font-size:24px;letter-spacing:-1px}.footer-links{display:flex;gap:30px;align-items:center}.footer-links a{font-family:Arial,sans-serif;font-size:11px;letter-spacing:.08em}.footer-links a:hover{text-decoration:underline;text-underline-offset:4px}.footer-links small{font-size:9px;font-family:Arial,sans-serif;color:#b8c7b5}
+    @media(min-width:1550px){.hero{padding-top:85px;padding-bottom:45px}.hero-grid{gap:84px}.hero-bottom{margin-top:65px}}
+    @media(max-width:1100px){.container{width:calc(100% - 64px)}.nav{gap:20px}.hero-grid{gap:35px;grid-template-columns:1fr 1fr}.product-en{font-size:82px}.hero-headline{font-size:27px}.hero-actions{gap:18px}.button{gap:22px;padding-inline:19px}.pain-layout,.tech-layout{gap:40px;grid-template-columns:.8fr 1.5fr}.pain-card{padding:23px 20px}.feature-column{padding:28px 27px 15px}.gallery-item:nth-child(2){padding-inline:35px}.timeline h3{font-size:14px}.timeline p{font-size:10px}.contact-inner{gap:45px}}
+    @media(max-width:850px){.container{width:calc(100% - 48px)}.header-inner{height:76px}.brand-word{font-size:32px}.brand-name{font-size:12px}.nav{gap:17px;font-size:12px}.nav-contact{padding:8px 11px;gap:10px}.nav-contact .arrow{width:16px;height:16px}.hero{padding-top:42px}.hero-top{margin-bottom:24px}.hero-grid{gap:25px}.product-en{font-size:70px}.product-zh{font-size:20px;margin-top:14px}.hero-headline{font-size:24px}.hero-copy>p{font-size:12px}.hero-actions{flex-wrap:wrap;gap:12px 20px}.hero-actions .button{font-size:12px;min-height:47px}.hero-actions .text-link{font-size:12px}.hero-visual .placeholder{aspect-ratio:4/5}.hero-visual figcaption{font-size:10px}.hero-bottom{margin-top:33px}.section{padding:75px 0}.pain-section{padding-top:60px}.pain-layout,.tech-layout{grid-template-columns:1fr;gap:35px}.pain-intro{display:grid;grid-template-columns:1fr 1fr;gap:0 35px;align-items:center}.pain-intro .eyebrow{grid-column:1/-1}.pain-intro .section-title{margin-bottom:0}.pain-intro .section-intro{max-width:none;padding-top:22px}.pain-card{min-height:auto;padding:25px}.section-heading-row{gap:25px}.section-heading-row>.section-intro{max-width:275px;font-size:12px}.section-title{font-size:30px}.flow-heading .section-title{font-size:28px}.flow-heading>p{max-width:220px;font-size:11px}.timeline{margin:42px 0 35px}.timeline h3{font-size:12px}.timeline li{padding-right:6px}.timeline p{font-size:9px;max-width:90px}.step-count{width:30px;height:30px;font-size:11px}.timeline li::after{top:15px;left:30px}.feature-columns{grid-template-columns:1fr 1fr}.feature-column{padding:26px 22px 12px}.column-title h3{font-size:22px}.column-title>.icon{width:28px;height:28px}.column-title .eyebrow{font-size:9px}.feature-item{grid-template-columns:18px 1fr;gap:8px}.feature-item h4{font-size:13px}.feature-item p{font-size:11px}.client-note{font-size:15px;padding:17px}.gallery-grid{gap:30px 25px}.gallery-item:nth-child(2){padding-inline:15px}.mobile-mat{padding:20px 0}.gallery-item h3{font-size:17px}.gallery-item p{font-size:11px}.tech-layout>.tech-intro{display:grid;grid-template-columns:1fr 1fr;column-gap:35px;align-items:center}.tech-intro .eyebrow{grid-column:1/-1}.tech-intro .section-title{margin-bottom:0}.tech-intro .section-intro{font-size:12px;padding-top:22px}.contact-inner{grid-template-columns:1.1fr 1fr;gap:35px}.contact-copy p{font-size:12px}.contact-section h2{font-size:28px}}
+    @media(max-width:680px){html{scroll-padding-top:92px}.container{width:calc(100% - 40px)}.header-inner{height:72px}.brand-word{font-size:33px}.brand-divider{height:26px}.brand-name{font-size:12px}.menu-toggle{display:flex}.nav{position:absolute;top:72px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;gap:0;padding:10px 20px 20px;background:var(--cream);border-bottom:1px solid var(--line);box-shadow:0 15px 25px -25px #24463a;font-size:14px}.nav.is-open{display:flex}.nav a{padding:13px 10px}.nav a:not(.nav-contact)::after{display:none}.nav .nav-contact{margin-top:10px;justify-content:space-between;padding:11px 15px}.hero{padding-top:32px}.hero-top{margin-bottom:28px}.eyebrow{font-size:10px;gap:10px;letter-spacing:.12em}.eyebrow::before{width:23px}.hero-index{font-size:11px}.hero-grid{grid-template-columns:1fr;gap:32px}.hero-copy{padding:0}.product-name{margin-bottom:24px}.product-en{font-size:clamp(62px,21vw,86px)}.product-zh{font-size:22px;letter-spacing:.2em;margin-top:15px}.hero-headline{font-size:clamp(23px,7.1vw,28px);line-height:1.65;margin-bottom:17px}.hero-copy>p{font-size:13px;max-width:420px;margin-bottom:24px}.hero-actions{gap:22px}.hero-actions .button{font-size:13px;min-height:49px;padding:11px 21px;gap:25px}.hero-actions .text-link{font-size:12px}.hero-visual .placeholder{aspect-ratio:16/11}.hero-visual figcaption{font-size:10px;padding:12px 0 0}.image-frame{padding:8px}.hero-bottom{margin-top:29px;padding-top:19px}.hero-audience{gap:13px;font-size:10px}.hero-audience span+span{padding-left:13px}.scroll-cue{font-size:0;gap:0}.scroll-cue .arrow{height:18px;width:18px}.section{padding:64px 0}.pain-section{padding-top:33px}.pain-layout{gap:28px}.pain-intro{display:block}.section-title{font-size:28px;line-height:1.65;margin-top:18px}.pain-intro .section-title{margin-bottom:16px}.pain-intro .section-intro{padding-top:0;max-width:330px;font-size:13px}.pain-grid{grid-template-columns:1fr;gap:12px}.pain-card{padding:22px 23px 23px;min-height:0}.pain-card-top{margin-bottom:15px}.pain-card h3{font-size:18px}.pain-card p{font-size:12px}.pain-card .icon{width:25px;height:25px}.flow-section{padding:54px 0}.flow-heading{display:block}.flow-heading .section-title{font-size:27px;margin-top:18px}.flow-heading>p{font-size:12px;max-width:315px;margin:17px 0 0}.timeline{display:block;margin:33px 0 28px;padding-left:4px}.timeline li{min-height:90px;padding:0 0 27px 58px;position:relative}.step-count{position:absolute;left:0;top:0;width:33px;height:33px;margin:0;font-size:12px}.timeline li::after{top:33px;left:16px;bottom:0;right:auto;width:1px;height:auto}.timeline h3{font-size:17px;padding-top:1px;margin-bottom:4px}.timeline p{font-size:11px;max-width:none}.timeline li:last-child{min-height:0;padding-bottom:0}.flow-note{display:block;font-size:11px;padding-top:19px}.flow-note small{display:block;margin-top:15px;font-size:8px;letter-spacing:.14em}.flow-note span:first-child{align-items:flex-start}.flow-note .icon{margin-top:3px}.section-heading-row{display:block;margin-bottom:29px}.section-heading-row>.section-intro{font-size:13px;max-width:340px;margin-top:15px;padding-bottom:0}.feature-columns{grid-template-columns:1fr}.feature-column{padding:27px 25px 12px}.feature-column+ .feature-column{border-left:0;border-top:1px solid var(--line)}.column-title{padding-bottom:22px}.column-title h3{font-size:24px}.column-title .eyebrow{font-size:10px}.column-title>.icon{width:31px;height:31px}.feature-item{grid-template-columns:20px 1fr;gap:11px;padding:19px 0}.feature-item h4{font-size:14px}.feature-item p{font-size:12px}.client-note{font-size:17px;padding:19px 21px;margin:23px 0 14px}.gallery-heading-note{display:none}.gallery-grid{grid-template-columns:1fr;gap:31px}.gallery-item:nth-child(2){padding-inline:0}.gallery-item .placeholder{aspect-ratio:16/10}.gallery-item figcaption{padding-top:13px}.gallery-item h3{font-size:18px}.gallery-item p{font-size:12px}.mobile-mat{padding:25px 0}.mobile-shell{width:46%;max-width:180px}.gallery-item .mobile-shell .placeholder{aspect-ratio:9/14.5}.tech-section{padding:53px 0 60px}.tech-layout{gap:30px}.tech-layout>.tech-intro{display:block}.tech-intro .section-title{font-size:28px;margin-bottom:14px}.tech-intro .section-intro{font-size:13px;padding:0;max-width:330px}.tech-items{grid-template-columns:1fr;gap:23px}.tech-item{padding:20px 0 0 0;display:grid;grid-template-columns:28px 1fr;gap:0 15px}.tech-item .icon{grid-row:1/3;margin-top:5px;margin-bottom:0}.tech-item h3{font-size:17px;margin-bottom:6px}.tech-item p{font-size:12px}.contact-section{padding:53px 0 37px}.contact-inner{display:block}.contact-section h2{font-size:28px;line-height:1.7;margin-top:19px}.contact-copy{margin-top:23px}.contact-copy p{font-size:13px;max-width:350px;margin-bottom:23px}.contact-copy .button{font-size:13px;min-height:50px;padding-inline:22px;gap:34px}.contact-footnote{margin-top:32px;padding-top:19px;font-size:10px;line-height:1.9}.site-footer{padding:24px 0}.footer-inner{display:block}.footer-links{margin-top:15px;justify-content:space-between;gap:12px}.footer-links a{font-size:10px}.footer-links small{font-size:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+    @media print{.site-header{position:static}.nav,.menu-toggle,.hero-actions,.scroll-cue{display:none}.section,.flow-section,.contact-section{padding:35px 0}.container{width:100%}.hero{padding:25px 0}.hero-grid{gap:25px}.hero-bottom{margin-top:20px}.flow-section,.contact-section,.site-footer{background:#f0f2eb;color:var(--green);print-color-adjust:exact}.timeline p,.flow-note,.contact-copy p,.contact-footnote{color:var(--green)}.step-count{background:transparent}.pain-card,.feature-item,.gallery-item,.tech-item{break-inside:avoid}a{overflow-wrap:anywhere}}
+
+    /* 實際系統截圖：以 CSS 視窗顯示重點，原始圖片不拉伸。 */
+    .real-hero{min-width:0}.hero-devices{display:flex;align-items:flex-start;justify-content:center;gap:22px;padding:15px 15px 6px;position:relative}.hero-devices::before{content:"";position:absolute;inset:60px 0 34px;border:1px solid #d5d9cd;background:#e8ebe1;z-index:-1}.screen-trigger{border:0;padding:0;background:transparent;color:inherit;cursor:zoom-in;display:block;text-align:left;min-width:0;font:inherit}.real-device{display:block;border:5px solid var(--green-dark);border-radius:24px;background:var(--green-dark);overflow:hidden;box-shadow:0 14px 30px -22px #233e30}.real-device img{display:block;width:100%;height:auto}.hero-device{width:calc(50% - 11px);max-width:242px;transition:transform .25s}.hero-device:hover{transform:translateY(-5px)}.hero-device:nth-child(2){margin-top:43px}.real-hero figcaption{padding-top:17px}.hero-copy>p{max-width:420px}.hero-headline{font-size:clamp(24px,2.3vw,32px)}
+    .origin-section{padding:75px 0 82px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fffdf8}.origin-grid{display:grid;grid-template-columns:.8fr 1.3fr;gap:70px;align-items:center}.origin-quote{font-family:var(--serif);font-size:22px;line-height:1.9;margin:25px 0 20px;color:#53644c}.origin-copy .section-title{font-size:30px;margin:0 0 20px}.origin-copy>p:not(.origin-quote){font-size:13px;color:var(--muted);line-height:2;margin:0 0 14px}.origin-summary{border-left:2px solid var(--gold);padding-left:18px;font-family:var(--serif);font-size:19px;line-height:1.8;margin-top:26px}.quote-demo{min-width:0}.quote-tabs{display:flex;border-bottom:1px solid #ccd2c2;margin-bottom:18px;gap:20px}.quote-tabs button{font-size:12px;border:0;border-bottom:2px solid transparent;background:none;padding:12px 0;color:var(--muted);cursor:pointer;margin-bottom:-1px}.quote-tabs button span{font-family:Georgia,serif;padding-right:5px}.quote-tabs button[aria-selected=true]{border-color:var(--green);color:var(--green);font-weight:600}.quote-panel[hidden]{display:none}.quote-image{padding:10px;background:var(--cream);border:1px solid #d9ddcf;width:100%;position:relative;min-height:0;aspect-ratio:912/656;display:flex;align-items:center;justify-content:center}.template-crop,.desktop-crop{display:block;position:relative;overflow:hidden;width:100%;background:var(--cream)}.template-crop{aspect-ratio:912/656}.template-crop img{display:block;position:absolute;max-width:none;width:224.562%;height:auto;left:-62.28%;top:-50.915%}.desktop-crop{aspect-ratio:2048/966}.desktop-crop img{display:block;position:absolute;max-width:none;width:100%;height:auto;left:0;top:-18.53%}.zoom-label{position:absolute;bottom:14px;right:14px;font:10px var(--sans);padding:7px 11px;color:var(--green);background:#fffdf8;border:1px solid #d7ddce;box-shadow:0 2px 8px #24463a0a;pointer-events:none}.quote-caption{margin:15px 0 0;font-size:12px;line-height:1.9;color:var(--muted)}.quote-caption strong{display:block;font-family:var(--serif);font-size:17px;font-weight:500;color:var(--green);margin-bottom:3px}.pain-section{padding-top:85px}.demo-notice{font-size:11px;color:var(--muted);padding:12px 0;border-block:1px solid var(--line);line-height:1.9;margin:0 0 34px;display:flex;gap:9px;align-items:flex-start}.demo-notice span{color:#6a7d62}.real-gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px 32px}.real-gallery-item{min-width:0}.gallery-device-mat{position:relative;background:#e9ece3;border:1px solid #d8ddcf;padding:52px 32px 34px;display:flex;justify-content:center;align-items:center}.gallery-kicker{position:absolute;top:17px;left:22px;font-size:11px;letter-spacing:.1em;color:#56674e}.gallery-phone{max-width:292px;width:85%;position:relative}.gallery-phone .real-device{border-width:4px;border-radius:22px}.gallery-phone .zoom-label{bottom:20px;right:15px}.real-gallery-item figcaption{padding-top:19px;display:grid;grid-template-columns:28px 1fr;gap:10px}.real-gallery-item .caption-index{font-size:12px;padding-top:6px}.real-gallery-item h3{font-family:var(--serif);font-size:22px;font-weight:500;line-height:1.7;margin:0 0 6px}.real-gallery-item p{font-size:13px;line-height:1.95;color:var(--muted);margin:0}.detail-link{display:inline-flex;align-items:center;gap:17px;border:0;border-bottom:1px solid var(--gold);padding:6px 0 4px;background:none;color:var(--green);font-size:12px;margin-top:10px;margin-right:18px;cursor:pointer}.detail-link:hover{color:#627852}.screenshot-dialog{width:min(1200px,calc(100vw - 48px));max-width:none;max-height:calc(100dvh - 48px);padding:0;border:1px solid #b8c3ae;background:var(--paper);color:var(--green);overflow:hidden}.screenshot-dialog::backdrop{background:rgba(15,33,25,.82)}.dialog-header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 23px;border-bottom:1px solid var(--line);background:var(--paper)}.dialog-title{font-size:14px;font-weight:500;margin:0;line-height:1.7}.dialog-close{width:40px;height:40px;flex-shrink:0;font-size:25px;line-height:1;border:1px solid var(--line);background:none;color:var(--green);cursor:pointer}.dialog-body{max-height:calc(100dvh - 151px);overflow:auto;overscroll-behavior:contain;padding:24px;text-align:center;background:#e9ece3}.dialog-body>img{display:block;height:auto;width:auto;max-width:100%;margin:auto}.dialog-body>img:not(.full-length){max-width:660px;width:100%}.dialog-body>.full-length{width:min(100%,440px)}.dialog-body>.desktop-crop,.dialog-body>.template-crop{margin:auto}.dialog-body>.template-crop{max-width:850px}.dialog-footer{font-size:10px;color:var(--muted);padding:8px 23px;margin:0;background:var(--paper)}
+    @media(max-width:1100px){.origin-grid{gap:40px;grid-template-columns:.85fr 1.25fr}.hero-devices{gap:15px;padding-inline:0}.hero-device{width:calc(50% - 8px)}.real-device{border-radius:21px;border-width:4px}.real-gallery-item h3{font-size:20px}.gallery-phone{max-width:270px}}
+    @media(max-width:850px){.origin-grid{grid-template-columns:1fr;gap:35px}.origin-copy{display:grid;grid-template-columns:1fr 1fr;gap:0 35px}.origin-copy .eyebrow{grid-column:1/-1}.origin-quote{grid-column:1;margin-top:22px;font-size:22px}.origin-copy .section-title{grid-column:1;grid-row:3;font-size:28px;margin:0}.origin-copy>p:not(.origin-quote){grid-column:2}.origin-copy>p:nth-of-type(2){grid-row:2;padding-top:20px}.origin-copy>p:nth-of-type(3){grid-row:3}.origin-summary{grid-column:1/-1;font-size:17px;margin-top:20px}.quote-image{min-height:0}.template-crop{max-width:650px}.hero-devices{gap:11px}.hero-device{width:calc(50% - 6px)}.real-device{border-radius:17px;border-width:3px}.hero-device:nth-child(2){margin-top:32px}.gallery-device-mat{padding:49px 22px 27px}.gallery-phone{width:94%}.real-gallery-item h3{font-size:18px}.real-gallery-item p{font-size:12px}.dialog-title{font-size:13px}}
+    @media(max-width:680px){.hero-grid{gap:29px}.hero-headline{font-size:clamp(23px,7.1vw,28px)}.hero-devices{max-width:430px;margin-inline:auto;gap:15px;padding:0 6px}.hero-device{width:calc(50% - 8px)}.hero-device:nth-child(2){margin-top:28px}.real-device{border-width:3px;border-radius:18px}.hero-devices::before{inset:37px 0 20px}.real-hero figcaption{font-size:10px;padding-top:16px}.hero-actions{gap:15px}.hero-actions .text-link{font-size:11px}.hero-actions .button{gap:17px;padding-inline:18px}.origin-section{padding:48px 0 50px}.origin-copy{display:block}.origin-quote{font-size:22px;margin:22px 0 20px}.origin-copy .section-title{font-size:27px;margin-bottom:20px}.origin-copy>p:nth-of-type(2){padding:0}.origin-copy>p:not(.origin-quote){font-size:13px}.origin-summary{margin-top:24px;font-size:18px}.origin-grid{gap:30px}.quote-tabs{gap:22px}.quote-tabs button{font-size:11px;padding-block:11px}.quote-image{padding:7px}.quote-caption{font-size:12px}.quote-caption strong{font-size:16px}.zoom-label{font-size:9px;right:10px;bottom:10px;padding:6px 8px}.pain-section{padding-top:49px}.demo-notice{font-size:10px;margin-bottom:25px;padding-block:11px}.real-gallery-grid{grid-template-columns:1fr;gap:34px}.gallery-device-mat{padding:48px 22px 28px}.gallery-phone{width:84%;max-width:290px}.gallery-phone .real-device{border-radius:21px;border-width:4px}.real-gallery-item figcaption{padding-top:15px;grid-template-columns:23px 1fr;gap:9px}.real-gallery-item h3{font-size:20px}.real-gallery-item p{font-size:12px}.detail-link{font-size:12px}.screenshot-dialog{width:calc(100vw - 18px);max-height:calc(100dvh - 24px)}.dialog-header{padding:10px 12px;gap:10px}.dialog-title{font-size:12px}.dialog-close{width:35px;height:35px;font-size:23px}.dialog-body{padding:9px;max-height:calc(100dvh - 123px)}.dialog-footer{font-size:9px;padding:7px 12px}.dialog-body>.desktop-crop{min-width:950px}.dialog-body>.template-crop{min-width:580px}}
+    @media print{.origin-section{padding:30px 0}.hero-device{width:45%}.screenshot-dialog{display:none}.screen-trigger{break-inside:avoid}.real-gallery-grid{grid-template-columns:1fr 1fr}.gallery-phone{max-width:160px}.quote-tabs{display:none}.quote-panel[hidden]{display:block}.quote-image{max-width:600px}.detail-link{display:none}}
+
+    /* 內文閱讀調整：補充說明同步放大，維持標題與內文的層次。 */
+    .hero-copy>p{font-size:15px}
+    .section-intro{font-size:15px}
+    .pain-card p{font-size:14px}
+    .flow-heading>p{font-size:14px;max-width:305px}
+    .timeline p{font-size:12px;max-width:135px}
+    .flow-note{font-size:14px}
+    .feature-item p{font-size:14px}
+    .origin-copy>p:not(.origin-quote){font-size:14px}
+    .quote-caption{font-size:14px}
+    .real-gallery-item p{font-size:14px}
+    .tech-item p{font-size:14px}
+    .contact-copy p{font-size:14px}
+    @media(max-width:850px){
+      .hero-copy>p{font-size:14px}
+      .section-heading-row>.section-intro,.pain-intro .section-intro,.tech-intro .section-intro{font-size:14px}
+      .flow-heading>p{font-size:14px;max-width:260px}
+      .timeline p{font-size:11px;max-width:96px}
+      .feature-item p,.real-gallery-item p{font-size:14px}
+    }
+    @media(max-width:680px){
+      .flow-heading>p{max-width:330px}
+      .timeline p{font-size:13px;max-width:none}
+      .flow-note{font-size:13px}
+      .origin-copy>p:not(.origin-quote),.quote-caption,.tech-item p,.contact-copy p{font-size:14px}
+    }
+    .contact-copy p{font-size:16px;line-height:2;max-width:390px}
+    @media(max-width:680px){.contact-copy p{font-size:15px}}
+
+    /* 沿用 GitHub 官網 assets/apo-logo.svg，僅以顯示視窗略去原圖透明留白。 */
+    .official-logo{display:block;width:190px;height:68px;position:relative;overflow:hidden;flex-shrink:0}
+    .official-logo img{position:absolute;display:block;max-width:none;width:212.25px;height:auto;left:-11.25px;top:-23.125px}
+    @media(max-width:850px){.official-logo{width:170px;height:61px}.official-logo img{width:190px;left:-10px;top:-20.7px}}
+    @media(max-width:680px){.official-logo{width:150px;height:54px}.official-logo img{width:167.6px;left:-8.9px;top:-18.3px}}
+  </style>
+</head>
+<body>
+  <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m-5-5 5 5 5-5"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="i-image" viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="22" rx="1"/><circle cx="11" cy="12" r="2"/><path d="m4 23 8-7 5 4 5-6 6 8"/></symbol>
+    <symbol id="i-window" viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="22" rx="1"/><path d="M3 11h26M10 11v16m4-11h10m-10 5h7"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 32 32"><path d="M11 4h12l5 5v18H11zM23 4v6h5M5 9H4v19h1m12-13h5m-5 5h7M8 7H7v21h1"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 32 32"><path d="m3 11 13-7 13 7H3Zm2 16h22M3 30h26M7 15v8m9-8v8m9-8v8"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 32 32"><rect x="4" y="7" width="24" height="21" rx="1"/><path d="M4 14h24M10 3v8M22 3v8m-12 8 4 4 8-6"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 32 32"><path d="M3 10V6h10l4 4h12v17H3V10Zm0 4h26M13 20h7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 32 32"><rect x="8" y="3" width="16" height="26" rx="2"/><path d="M13 7h6m-4 18h2m-5-9 3 3 6-6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 32 32"><path d="M9 25h16a6 6 0 0 0 1-12 9 9 0 0 0-17-2 7 7 0 0 0 0 14Z"/><path d="M16 23V13m-4 4 4-4 4 4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 32 32"><path d="m16 3 11 4v9c0 7-11 13-11 13S5 23 5 16V7L16 3Z"/><path d="m11 15 4 4 7-8"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 32 32"><rect x="6" y="14" width="20" height="15" rx="1"/><path d="M10 14V9a6 6 0 0 1 12 0v5m-6 6v4"/></symbol>
+    <symbol id="i-devices" viewBox="0 0 32 32"><path d="M19 23H3V5h26v9M8 28h10m-5-5v5"/><rect x="22" y="17" width="8" height="13" rx="1"/><path d="M25 27h2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </defs></svg>
+  <a class="skip-link" href="#main">跳至主要內容</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="https://apodevelop.com" aria-label="阿珀開發官方網站"><span class="official-logo"><img width="1698" height="926" src="/assets/apo-logo.svg" alt="阿珀開發 ApoDevelop Logo"></span></a>
+      <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="primary-nav"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+      <nav class="nav" id="primary-nav" aria-label="主要導覽">
+        <a href="#workflow">流程概覽</a><a href="#features">功能設計</a><a href="#screens">畫面一覽</a><a href="#technology">技術架構</a><a class="nav-contact" href="#contact">聊聊你的需求<svg class="arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="product-title">
+      <div class="container">
+        <div class="hero-top"><div class="eyebrow">阿珀開發 · 自研系統作品</div><span class="hero-index">Portfolio / 01</span></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 class="product-name" id="product-title"><span class="product-en" lang="en">ApoCase</span><span class="product-zh">案件中心</span></h1>
+            <h2 class="hero-headline">從報價不用重打，<br>到整個案件都管得好。</h2>
+            <p>一開始，只是想解決「每次報價都要重打」。<br>後來，連回簽、進度、資料、收款與發票，也一起接進案件中心。一個案子的所有事情，集中在一個頁面。</p>
+            <div class="hero-actions"><a class="button button-primary" href="#screens">看看系統畫面<svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="text-link" href="#quotation">看看怎麼不用重打<svg class="arrow" aria-hidden="true"><use href="#i-down"/></svg></a></div>
+          </div>
+          <figure class="hero-visual real-hero">
+  <div class="hero-devices">
+    <button class="screen-trigger hero-device" type="button" data-screen="後台首頁：掌握案件與待辦" aria-label="放大後台首頁截圖"><span class="real-device"><img width="946" height="2048" class="" src="assets/screen-3a4b055f87d9.png" alt="ApoCase 手機後台首頁，包含進行中案件、待處理事項、收入與最近報價單。" loading="eager" decoding="async"></span></button>
+    <button class="screen-trigger hero-device" type="button" data-screen="案件清單：進度、收款與提醒" aria-label="放大案件清單截圖"><span class="real-device"><img width="946" height="2048" class="" src="assets/screen-a93443115b78.png" alt="ApoCase 手機案件清單，每筆案件顯示階段、已收款、里程碑與待辦提醒。" loading="eager" decoding="async"></span></button>
+  </div>
+  <figcaption><span>管理案件，也能用手邊的手機。</span><span class="caption-index">點圖放大 ↗</span></figcaption>
+</figure>
+        </div>
+        <div class="hero-bottom"><div class="hero-audience"><span>為接案者而做</span><span>小工作室</span><span>中小企業</span></div><a class="scroll-cue" href="#problems">EXPLORE THE CASE<svg class="arrow" aria-hidden="true"><use href="#i-down"/></svg></a></div>
+      </div>
+    </section>
+
+    <section class="origin-section" id="quotation" aria-labelledby="origin-title">
+      <div class="container">
+        <div class="origin-grid">
+          <div class="origin-copy"><div class="eyebrow"><span class="en">THE STARTING POINT</span></div>
+            <p class="origin-quote">「每次報價都要重新打，<br>真的很累。」</p>
+            <h2 class="section-title" id="origin-title">從這句話開始，<br>讓案件資訊一路銜接。</h2>
+            <p>朋友提起，每次做報價，總要把差不多的服務內容再輸入一次。於是，我們先把常用品項整理成範本。</p>
+            <p>現在，選好品項，就能帶入名稱、規格與價格，稅金和總額一起算好。報價完成後，後續的回簽、資料、進度與款項，也有地方接著管。</p>
+            <div class="origin-summary">資料不用重打，<br>案件也不用重新找。</div>
+          </div>
+          <div class="quote-demo">
+            <div class="quote-tabs" role="tablist" aria-label="報價操作畫面">
+              <button type="button" role="tab" id="quote-tab-1" aria-selected="true" aria-controls="quote-panel-1" tabindex="0"><span>01</span> 選入常用品項</button>
+              <button type="button" role="tab" id="quote-tab-2" aria-selected="false" aria-controls="quote-panel-2" tabindex="-1"><span>02</span> 自動計算總額</button>
+            </div>
+            <div class="quote-panel" id="quote-panel-1" role="tabpanel" aria-labelledby="quote-tab-1">
+              <button class="screen-trigger quote-image" type="button" data-screen="從範本選入：常用服務直接加入報價單" data-crop="template" aria-label="放大從範本選入截圖"><span class="template-crop"><img width="2048" height="1280" class="" src="assets/screen-04a98b15f449.png" alt="從範本選入視窗，依系統開發、網站與其他分類，勾選服務與價格。" loading="lazy" decoding="async"></span><span class="zoom-label">放大畫面 ↗</span></button>
+              <p class="quote-caption"><strong>常用服務，選一下就帶入。</strong>依服務分類選取品項，把名稱、規格與價格一起加入報價單。</p>
+            </div>
+            <div class="quote-panel" id="quote-panel-2" role="tabpanel" aria-labelledby="quote-tab-2" hidden>
+              <button class="screen-trigger quote-image" type="button" data-screen="品項帶入後：稅金與總額一起算好" data-crop="desktop" aria-label="放大品項帶入後的報價單截圖"><span class="desktop-crop"><img width="2048" height="1280" class="" src="assets/screen-2d9f6c95b66c.png" alt="已帶入教育訓練與活動頁品項，未稅小計 30000 元、稅金 1500 元、含稅總額 31500 元。" loading="lazy" decoding="async"></span><span class="zoom-label">放大畫面 ↗</span></button>
+              <p class="quote-caption"><strong>明細到總額，不用再算一次。</strong>品項帶入後自動合計，可預覽列印，或儲存並產生客戶連結。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section pain-section" id="problems" aria-labelledby="pain-title">
+      <div class="container pain-layout">
+        <div class="pain-intro"><div class="eyebrow"><span class="en">01 / THE CHALLENGE</span></div><h2 class="section-title" id="pain-title">案子在推進，<br>資料卻散在各處？</h2><p class="section-intro">事情不是沒做，而是每次要確認，<br>都得重新找一次。<br>這些接案日常，或許你也很熟悉。</p></div>
+        <div class="pain-grid">
+          <article class="pain-card"><div class="pain-card-top"><svg class="icon" aria-hidden="true"><use href="#i-docs"/></svg><span class="small-number">01</span></div><h3>客戶簽的，到底是哪一版？</h3><p>報價單在 Word、Excel 裡改來改去，檔名越來越長，最後卻不確定哪份才是定案。</p></article>
+          <article class="pain-card"><div class="pain-card-top"><svg class="icon" aria-hidden="true"><use href="#i-bank"/></svg><span class="small-number">02</span></div><h3>「我匯了。」然後呢？</h3><p>收到一句匯款通知，還要翻帳戶、找金額、對時間，才能確認這筆款項屬於哪個案子。</p></article>
+          <article class="pain-card"><div class="pain-card-top"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span class="small-number">03</span></div><h3>尾款、發票，全靠記得。</h3><p>哪一筆還沒收？哪張發票還沒開？忙著做案子的同時，還得在腦中留一份待辦清單。</p></article>
+          <article class="pain-card"><div class="pain-card-top"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg><span class="small-number">04</span></div><h3>檔案散在對話，資料一直追。</h3><p>LOGO 在 LINE、文案在信箱、照片在雲端。少了什麼、還要追什麼，每次都得重新整理。</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="flow-section" id="workflow" aria-labelledby="flow-title">
+      <div class="container">
+        <div class="flow-heading"><div><div class="eyebrow"><span class="en">02 / THE WORKFLOW</span></div><h2 class="section-title" id="flow-title">從第一份報價，<br>到最後一次確認。</h2></div><p>把案件的每個階段接起來。<br>下一步要做什麼，回到案件頁就知道。</p></div>
+        <ol class="timeline">
+          <li><span class="step-count">01</span><h3>報價</h3><p>整理明細、稅金與總額</p></li>
+          <li><span class="step-count">02</span><h3>客戶線上回簽</h3><p>確認版本，上傳用印文件</p></li>
+          <li><span class="step-count">03</span><h3>執行中</h3><p>回報進度、收集所需資料</p></li>
+          <li><span class="step-count">04</span><h3>收款確認</h3><p>回報末五碼，核對款項</p></li>
+          <li><span class="step-count">05</span><h3>開發票</h3><p>記錄號碼，追蹤開立狀態</p></li>
+          <li><span class="step-count">06</span><h3>客戶驗收</h3><p>客戶在線上確認成果</p></li>
+          <li><span class="step-count">07</span><h3>結案</h3><p>案件紀錄集中留存</p></li>
+        </ol>
+        <div class="flow-note"><span><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>每個階段自動寄出通知信，讓雙方接得上下一步。</span><small>ONE PROJECT. ONE PLACE.</small></div>
+      </div>
+    </section>
+    <section class="section features-section" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-heading-row"><div><div class="eyebrow"><span class="en">03 / TWO SIDES, ONE PROJECT</span></div><h2 class="section-title" id="features-title">你管好案件，<br>客戶也能輕鬆配合。</h2></div><p class="section-intro">同一個案子，依照雙方的工作方式，<br>提供各自需要的畫面與操作。</p></div>
+        <div class="feature-columns">
+          <article class="feature-column"><div class="column-title"><div><div class="eyebrow">我們這端 / 接案方</div><h3>把管理留在同一頁。</h3></div><svg class="icon" aria-hidden="true"><use href="#i-window"/></svg></div>
+            <ul class="features-list">
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>範本帶入，報價不用重打</h4><p>常用服務依分類選入，帶入名稱、規格與價格，自動計算稅金與總額。支援匯出 PDF，並可切換四種品牌配色。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>版本控管，確認有依據</h4><p>客戶回簽後自動鎖定報價單；需要修改時，保留舊版本紀錄，減少認知落差與爭議。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>一個案件，一頁集中管理</h4><p>報價、收款、發票、執行進度與檔案，都能回到同一個案件頁查看。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>收款與發票一起追蹤</h4><p>支援分期收費、應收款追蹤、發票號碼紀錄，並提醒「已收款未開發票」的項目。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>收入統計</h4><p>查看近 12 個月收入與應收款項，掌握已收進來的錢，以及還在等的款項。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>每月進度回報</h4><p>透過範本產生月報，提供客戶在線上查看與確認，持續合作也有清楚紀錄。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>個人勞報單</h4><p>提供自由工作者適用的勞報單，自動計算扣繳，減少重複整理與計算。</p></div></li>
+            </ul>
+          </article>
+          <article class="feature-column"><div class="column-title"><div><div class="eyebrow">客戶那端 / 業主</div><h3>打開連結，就能繼續。</h3></div><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></div>
+            <ul class="features-list">
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>手機看報價，線上回簽</h4><p>收到案件專屬連結，手機打開就能查看報價單，並上傳用印回簽文件。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>匯款後，直接回報末五碼</h4><p>在線上填寫匯款帳號末五碼，系統自動通知接案方，讓後續核對有資訊可查。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>資料看板，照清單交資料</h4><p>接案方列出需要的 LOGO、文案或照片，客戶直接在看板上傳檔案、留言。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>查看進度，確認驗收</h4><p>線上查看每月進度回報，並在成果完成後確認驗收，雙方都能找到紀錄。</p></div></li>
+              <li class="feature-item"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><div><h4>通知信接住每個階段</h4><p>案件進入下一階段時，自動寄出通知信，提醒客戶接下來需要配合的事項。</p></div></li>
+            </ul>
+            <p class="client-note">少一點來回詢問，<br>多一點清楚的合作。<small>讓需要確認的事，有一個共同的地方可以看。</small></p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section gallery-section" id="screens" aria-labelledby="screens-title"><div class="container">
+ <div class="section-heading-row"><div><div class="eyebrow"><span class="en">04 / INSIDE APOCASE</span></div><h2 class="section-title" id="screens-title">從報價到結案，<br>每一步都有清楚紀錄。</h2></div><p class="section-intro">接案方管理得清楚，客戶也看得明白。<br>點選畫面可放大，細節慢慢看。</p></div>
+ <p class="demo-notice"><span aria-hidden="true">○</span> 畫面中的公司、案件與金額皆為示範資料，不代表真實客戶、成交金額或營收。</p>
+ <div class="real-gallery-grid"><figure class="real-gallery-item"><div class="gallery-device-mat"><span class="gallery-kicker">01 / 案件管理</span><button class="screen-trigger gallery-phone" type="button" data-screen="案件管理：從報價之後，接著往下管。" aria-label="放大案件管理截圖"><span class="real-device"><img width="946" height="2048" class="" src="assets/screen-7c71f8c707e4.png" alt="回簽後的執行階段、待提供資料與客戶回覆，都跟著案件一起留下來。" loading="lazy" decoding="async"></span><span class="zoom-label">點圖放大 ↗</span></button></div><figcaption><span class="caption-index">01</span><div><h3>從報價之後，接著往下管。</h3><p>回簽後的執行階段、待提供資料與客戶回覆，都跟著案件一起留下來。</p><button class="detail-link" type="button" data-full="full-screen-1" data-screen="案件完整頁面總覽">查看完整長圖 <span aria-hidden="true">↗</span></button> <button class="detail-link" type="button" data-full="acceptance-screen" data-screen="驗收回饋：需要修改的內容也留在案件裡">看看驗收回饋 <span aria-hidden="true">↗</span></button></div></figcaption></figure><figure class="real-gallery-item"><div class="gallery-device-mat"><span class="gallery-kicker">02 / 客戶協作</span><button class="screen-trigger gallery-phone" type="button" data-screen="客戶協作：客戶也有自己的案件入口。" aria-label="放大客戶協作截圖"><span class="real-device"><img width="946" height="2048" class="" src="assets/screen-4b017a4e26ff.png" alt="打開專屬連結，查看完成與待辦項目，並依資料看板提供檔案、留下訊息。" loading="lazy" decoding="async"></span><span class="zoom-label">點圖放大 ↗</span></button></div><figcaption><span class="caption-index">02</span><div><h3>客戶也有自己的案件入口。</h3><p>打開專屬連結，查看完成與待辦項目，並依資料看板提供檔案、留下訊息。</p><button class="detail-link" type="button" data-full="full-screen-2" data-screen="客戶完整頁面總覽">查看完整長圖 <span aria-hidden="true">↗</span></button></div></figcaption></figure><figure class="real-gallery-item"><div class="gallery-device-mat"><span class="gallery-kicker">03 / 收入與應收款</span><button class="screen-trigger gallery-phone" type="button" data-screen="收入與應收款：錢收了多少，還有多少在等。" aria-label="放大收入與應收款截圖"><span class="real-device"><img width="946" height="2048" class="" src="assets/screen-e94f6d064811.png" alt="近 12 個月收入、應收未收與收費期別集中查看，後續追蹤有依據。" loading="lazy" decoding="async"></span><span class="zoom-label">點圖放大 ↗</span></button></div><figcaption><span class="caption-index">03</span><div><h3>錢收了多少，還有多少在等。</h3><p>近 12 個月收入、應收未收與收費期別集中查看，後續追蹤有依據。</p></div></figcaption></figure><figure class="real-gallery-item"><div class="gallery-device-mat"><span class="gallery-kicker">04 / 持續合作</span><button class="screen-trigger gallery-phone" type="button" data-screen="持續合作：每個月的合作，也有紀錄。" aria-label="放大持續合作截圖"><span class="real-device"><img width="946" height="2048" class="" src="assets/screen-0fd9c1f8f1c4.png" alt="年約案件保留每月進度回報與收款進度，客戶可在同一個入口持續查看。" loading="lazy" decoding="async"></span><span class="zoom-label">點圖放大 ↗</span></button></div><figcaption><span class="caption-index">04</span><div><h3>每個月的合作，也有紀錄。</h3><p>年約案件保留每月進度回報與收款進度，客戶可在同一個入口持續查看。</p><button class="detail-link" type="button" data-full="full-screen-4" data-screen="月報與收款完整頁面總覽">查看月報與收款長圖 <span aria-hidden="true">↗</span></button></div></figcaption></figure></div></div></section>
+    <section class="tech-section" id="technology" aria-labelledby="tech-title">
+      <div class="container tech-layout">
+        <div class="tech-intro"><div class="eyebrow"><span class="en">05 / UNDER THE HOOD</span></div><h2 class="section-title" id="tech-title">流程背後，<br>兼顧資料與權限。</h2><p class="section-intro">以 Google Workspace 為基礎，<br>把資料歸屬、存取方式與日常使用一起考慮。</p></div>
+        <div class="tech-items">
+          <article class="tech-item"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg><h3>資料在自己的帳號</h3><p>以 Google Apps Script、Google 試算表與 Google Drive 建立，資料放在使用者自己的 Google 帳號。</p></article>
+          <article class="tech-item"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><h3>專屬連結與檔案權限</h3><p>客戶連結使用不可猜測的專屬代碼；檔案只分享給指定 Email，依對象設定存取。</p></article>
+          <article class="tech-item"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><h3>後台登入與授權管理</h3><p>後台透過密碼登入，搭配授權管理機制，讓案件管理與客戶操作各有適合的入口。</p></article>
+          <article class="tech-item"><svg class="icon" aria-hidden="true"><use href="#i-devices"/></svg><h3>專屬網域，延續品牌形象</h3><p>支援自訂網域，也可由阿珀提供專屬網域設定服務，協助將系統設定在你的品牌專屬網址，呈現更一致、專業的品牌形象。手機版完整可用，隨手就能接續處理。</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-inner"><div><div class="eyebrow"><span class="en">LET’S BUILD A BETTER WORKFLOW</span></div><h2 id="contact-title">想要一套為你的流程<br>量身打造的系統？</h2></div><div class="contact-copy"><p>ApoCase 是阿珀開發把實際工作流程做成系統的一個例子。你的團隊，也可能有一段每天重複、值得重新整理的工作。</p><!-- 依需求保留 #contact。取得正式聯絡連結後，修改下方 href 即可。 --><a class="button button-light" href="https://line.me/R/ti/p/@appdevelop" target="_blank" rel="noopener noreferrer">和阿珀聊聊需求<svg class="arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a></div></div>
+        <p class="contact-footnote">阿珀開發｜讓工具配合人的工作方式，而不是讓人配合工具。</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><a class="footer-brand" href="https://apodevelop.com"><span>Apo</span><span>阿珀開發</span></a><div class="footer-links"><a href="https://apodevelop.com">apodevelop.com ↗</a><small>© 2026 Apo Development</small></div></div></footer>
+
+  <!-- 長圖僅在開啟時放入檢視器，保留原始比例。所有截圖已內嵌於此 HTML。 -->
+  <template id="full-screen-1"><img width="249" height="2048" class="full-length" src="assets/screen-4e310ccd8d29.png" alt="案件完整頁面總覽" loading="lazy" decoding="async"></template>
+  <template id="full-screen-2"><img width="234" height="2048" class="full-length" src="assets/screen-4b760b83ee06.png" alt="客戶完整頁面總覽" loading="lazy" decoding="async"></template>
+  <template id="full-screen-4"><img width="234" height="2048" class="full-length" src="assets/screen-48ded113a269.png" alt="月報與收款完整頁面總覽" loading="lazy" decoding="async"></template>
+  <template id="acceptance-screen"><img width="946" height="2048" class="" src="assets/screen-8e54ea976299.png" alt="日常學堂案件驗收中，客戶回覆需要修改課前提醒信內容。" loading="lazy" decoding="async"></template>
+  <dialog class="screenshot-dialog" aria-labelledby="screenshot-dialog-title">
+    <div class="dialog-header"><h2 class="dialog-title" id="screenshot-dialog-title">系統畫面</h2><button class="dialog-close" type="button" aria-label="關閉放大畫面">×</button></div>
+    <div class="dialog-body"></div><p class="dialog-footer">示範資料 · 圖片維持原比例；手機上可左右滑動桌面畫面。</p>
+  </dialog>
+  <script>
+    // 手機導覽、閱讀區塊提示與畫面檢視；核心文案及截圖直接包含於 HTML。
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+    function closeMenu() {nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','開啟導覽選單');}
+    toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'關閉導覽選單':'開啟導覽選單');});
+    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('is-open')){closeMenu();toggle.focus();}});
+    document.addEventListener('click',event=>{if(!event.target.closest('.site-header'))closeMenu();});
+    matchMedia('(min-width:681px)').addEventListener('change',event=>{if(event.matches)closeMenu();});
+    if ('IntersectionObserver' in window) {
+      const links=[...nav.querySelectorAll('a')];
+      const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(link=>{if(link.hash==='#'+entry.target.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});}});},{rootMargin:'-15% 0px -65% 0px',threshold:0});
+      ['workflow','features','screens','technology','contact'].forEach(id=>observer.observe(document.getElementById(id)));
+    }
+
+    // 報價操作頁籤：支援滑鼠、觸控與鍵盤左右鍵。
+    const quoteTabs=[...document.querySelectorAll('.quote-tabs [role="tab"]')];
+    function selectQuoteTab(tab){quoteTabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!active;});}
+    quoteTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectQuoteTab(tab));tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(index+1)%quoteTabs.length;else if(event.key==='ArrowLeft')next=(index-1+quoteTabs.length)%quoteTabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=quoteTabs.length-1;else return;event.preventDefault();selectQuoteTab(quoteTabs[next]);quoteTabs[next].focus();});});
+    // 原圖檢視器：原始截圖不重製，點選後放大；Escape 可關閉。
+    const screenDialog=document.querySelector('.screenshot-dialog');
+    const dialogBody=screenDialog.querySelector('.dialog-body');
+    let screenTrigger=null;
+    document.querySelectorAll('[data-screen]').forEach(trigger=>trigger.addEventListener('click',()=>{
+      screenTrigger=trigger;document.getElementById('screenshot-dialog-title').textContent=trigger.dataset.screen;dialogBody.replaceChildren();
+      let content;
+      if(trigger.dataset.full){content=document.getElementById(trigger.dataset.full).content.firstElementChild.cloneNode(true);}
+      else if(trigger.dataset.crop){content=trigger.querySelector('.'+trigger.dataset.crop+'-crop').cloneNode(true);}
+      else{content=trigger.querySelector('img').cloneNode(true);}
+      const picture=content.matches('img')?content:content.querySelector('img');if(picture){picture.loading='eager';picture.removeAttribute('decoding');}
+      dialogBody.append(content);screenDialog.showModal();document.body.style.overflow='hidden';dialogBody.scrollTop=0;
+    }));
+    screenDialog.querySelector('.dialog-close').addEventListener('click',()=>screenDialog.close());
+    screenDialog.addEventListener('click',event=>{if(event.target===screenDialog){const r=screenDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)screenDialog.close();}});
+    screenDialog.addEventListener('close',()=>{document.body.style.overflow='';dialogBody.replaceChildren();if(screenTrigger)screenTrigger.focus({preventScroll:true});});
+  </script>
+</body>
+</html>
