@@ -98,7 +98,10 @@
     .official-logo img{position:absolute;display:block;max-width:none;width:212.25px;height:auto;left:-11.25px;top:-23.125px}
     @media(max-width:850px){.official-logo{width:170px;height:61px}.official-logo img{width:190px;left:-10px;top:-20.7px}}
     @media(max-width:680px){.official-logo{width:150px;height:54px}.official-logo img{width:167.6px;left:-8.9px;top:-18.3px}}
-  </style>
+  
+.apocase-local-nav{background:#f7f3ea;border-bottom:1px solid #dcded3;position:relative;z-index:2}.apocase-local-nav .container{display:flex;align-items:center;gap:24px;overflow-x:auto;white-space:nowrap;padding-top:10px;padding-bottom:10px}.apocase-local-nav a{font:600 13px/1.6 "Noto Sans TC",sans-serif;color:#24463a;text-decoration:none}.apocase-local-nav a:hover{color:#a0814d}.apo-site-header .apo-brand img{max-width:none}.apo-site-header .apo-links{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif}
+</style>
+<link rel="stylesheet" href="/assets/apo-nav.css"><script src="/assets/apo-nav.js" defer></script>
 </head>
 <body>
   <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -121,15 +124,8 @@
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   </defs></svg>
   <a class="skip-link" href="#main">跳至主要內容</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="https://apodevelop.com" aria-label="阿珀開發官方網站"><span class="official-logo"><img width="1698" height="926" src="/assets/apo-logo.svg" alt="阿珀開發 ApoDevelop Logo"></span></a>
-      <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="primary-nav"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
-      <nav class="nav" id="primary-nav" aria-label="主要導覽">
-        <a href="#workflow">流程概覽</a><a href="#features">功能設計</a><a href="#screens">畫面一覽</a><a href="#technology">技術架構</a><a class="nav-contact" href="#contact">聊聊你的需求<svg class="arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-      </nav>
-    </div>
-  </header>
+  <header class="apo-site-header"><nav class="apo-nav" aria-label="阿珀開發網站導覽"><a class="apo-brand" href="/" aria-label="阿珀開發，回首頁"><img src="/assets/apo-logo.svg" alt="阿珀開發 ApoDevelop Logo"></a><button class="apo-menu-toggle" type="button" aria-controls="apoNavLinks" aria-expanded="false">☰ 選單</button><div class="apo-links" id="apoNavLinks"><a href="/">首頁</a><details class="apo-drop"><summary>服務項目 <span aria-hidden="true">⌄</span></summary><div class="apo-dropdown"><a href="/services/line-student/">LINE 學員管理系統</a><a href="/digital/">數位營運與流程整合</a><a href="https://payroll.apodevelop.com/" target="_blank" rel="noopener noreferrer">薪資管理系統 ↗</a><a href="/services/email-newsletter/">電子報代發與名單維護</a></div></details><a href="/apocase/">ApoCase 案件中心</a><a href="/#process">合作流程</a><a href="/#about">關於阿珀</a><a class="apo-nav-cta" href="https://line.me/R/ti/p/@appdevelop" target="_blank" rel="noopener noreferrer">立即諮詢 ↗</a></div></nav></header>
+  <nav class="apocase-local-nav" aria-label="ApoCase 頁內導覽"><div class="container"><a href="#workflow">流程概覽</a><a href="#features">功能設計</a><a href="#screens">畫面一覽</a><a href="#technology">技術架構</a><a href="#contact">產品諮詢</a></div></nav>
   <main id="main">
     <section class="hero" aria-labelledby="product-title">
       <div class="container">
@@ -268,21 +264,7 @@
     <div class="dialog-body"></div><p class="dialog-footer">示範資料 · 圖片維持原比例；手機上可左右滑動桌面畫面。</p>
   </dialog>
   <script>
-    // 手機導覽、閱讀區塊提示與畫面檢視；核心文案及截圖直接包含於 HTML。
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav');
-    function closeMenu() {nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','開啟導覽選單');}
-    toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'關閉導覽選單':'開啟導覽選單');});
-    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
-    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('is-open')){closeMenu();toggle.focus();}});
-    document.addEventListener('click',event=>{if(!event.target.closest('.site-header'))closeMenu();});
-    matchMedia('(min-width:681px)').addEventListener('change',event=>{if(event.matches)closeMenu();});
-    if ('IntersectionObserver' in window) {
-      const links=[...nav.querySelectorAll('a')];
-      const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(link=>{if(link.hash==='#'+entry.target.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});}});},{rootMargin:'-15% 0px -65% 0px',threshold:0});
-      ['workflow','features','screens','technology','contact'].forEach(id=>observer.observe(document.getElementById(id)));
-    }
-
+    // 共用網站導覽由 apo-nav.js 管理；本頁僅保留產品功能互動。
     // 報價操作頁籤：支援滑鼠、觸控與鍵盤左右鍵。
     const quoteTabs=[...document.querySelectorAll('.quote-tabs [role="tab"]')];
     function selectQuoteTab(tab){quoteTabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1;document.getElementById(item.getAttribute('aria-controls')).hidden=!active;});}
