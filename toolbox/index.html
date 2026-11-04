@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#24463a">
+  <title>APO 工具箱｜阿珀開發 ApoDevelop</title>
+  <meta name="description" content="APO 工具箱，一次付費、永久使用。實用小工具持續加入，每個工具都有影片教學。">
+  <link rel="canonical" href="https://www.apodevelop.com/toolbox/">
+  <meta property="og:title" content="APO 工具箱｜一次付費，永久使用">
+  <meta property="og:description" content="我們做了什麼工具，你就能用什麼工具。新工具持續加入，每個工具都附影片教學。">
+  <meta property="og:image" content="https://www.apodevelop.com/toolbox/assets/apo-toolbox-card.jpg">
+  <meta property="og:url" content="https://www.apodevelop.com/toolbox/">
+  <style>
+    :root {
+      --green: #24463a;
+      --green-dark: #17372d;
+      --gold: #c8a96b;
+      --cream: #f7f1e7;
+      --paper: #fffdf8;
+      --border: #e7ded1;
+      --ink: #2e312f;
+      --muted: #7a817d;
+      --radius: 20px;
+      --shadow: 0 16px 45px rgba(34, 52, 41, .055);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; background: var(--cream); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    button { font: inherit; }
+    img { max-width: 100%; }
+    .container { width: min(1120px, calc(100% - 32px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-size: 12px; font-weight: 800; letter-spacing: .17em; }
+    .eyebrow::before { content: ""; height: 1px; width: 20px; background: var(--gold); }
+
+    /* 頁內導覽（共用導覽列下方） */
+    .local-nav { background: var(--paper); border-bottom: 1px solid var(--border); }
+    .local-nav .container { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; padding: 10px 0; font-size: 13px; font-weight: 700; }
+    .local-nav .container::-webkit-scrollbar { display: none; }
+    .local-nav a { text-decoration: none; white-space: nowrap; color: #55635a; }
+    .local-nav a:hover { color: var(--green); }
+
+    .hero { padding: 88px 0 100px; position: relative; }
+    .hero-layout { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 64px; }
+    .hero h1 { margin: 19px 0 17px; font-size: clamp(48px, 6.2vw, 84px); line-height: 1.18; letter-spacing: -.045em; color: var(--green); font-weight: 850; }
+    .hero .lede { max-width: 540px; font-size: clamp(18px, 2vw, 23px); line-height: 1.8; font-weight: 600; margin: 0; }
+    .hero .support { color: var(--muted); font-size: 14px; margin: 14px 0 27px; }
+    .price-line { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin: 0 0 26px; min-height: 52px; }
+    .price-label { color: var(--muted); font-size: 13px; }
+    .price { font-size: clamp(31px, 4vw, 44px); font-weight: 850; line-height: 1.1; color: var(--green); letter-spacing: -.035em; }
+    .pill { display: inline-flex; align-items: center; gap: 4px; border: 1px solid #d7bf90; background: #f9efd9; color: #80612e; border-radius: 100px; font-weight: 800; padding: 5px 12px; font-size: 12px; }
+    .pill:empty { display: none; }
+    .price-fallback { font-size: 14px; color: var(--muted); }
+    .is-loading .price { opacity: .35; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 9px; min-height: 52px; padding: 12px 25px; border: 1px solid transparent; border-radius: 11px; text-decoration: none; font-size: 15px; font-weight: 800; transition: transform .2s ease, background .2s ease, box-shadow .2s ease; text-align: center; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .btn-gold { background: var(--gold); color: var(--green-dark); box-shadow: 0 7px 20px rgba(94,72,30,.13); }
+    .btn-gold:hover { background: #d6b77b; }
+    .btn-outline { border-color: var(--green); color: var(--green); background: transparent; }
+    .btn-outline:hover { background: rgba(36,70,58,.06); }
+    .microcopy { margin: 15px 0 0; font-size: 12px; color: var(--muted); }
+    .hero-art { border: 1px solid #d5cbbb; background: #efe7d9; border-radius: 28px; min-height: 450px; padding: 28px; position: relative; box-shadow: 20px 20px 0 rgba(36,70,58,.045); display: flex; align-items: center; justify-content: center; }
+    .art-inner { width: min(100%, 415px); border-radius: 18px; background: var(--paper); box-shadow: 0 22px 55px rgba(45,52,42,.12); border: 1px solid var(--border); padding: 20px; transform: rotate(-3deg); }
+    .art-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 15px; color: var(--green); font-size: 14px; font-weight: 800; }
+    .art-dots { color: var(--gold); letter-spacing: 2px; }
+    .art-title { color: var(--green); font-family: Georgia, serif; font-weight: 700; font-size: 37px; letter-spacing: -.04em; line-height: 1.3; margin: 27px 0 19px; }
+    .art-item { display: flex; align-items: center; gap: 11px; padding: 12px; margin-top: 9px; background: #f5f1e9; border: 1px solid #eee7dc; border-radius: 10px; color: var(--ink); font-size: 13px; font-weight: 700; }
+    .art-icon { width: 35px; height: 35px; flex: 0 0 35px; display: grid; place-items: center; border-radius: 9px; background: #e5ebe3; color: var(--green); font-size: 17px; }
+    .art-item small { display: block; color: var(--muted); font-size: 10px; font-weight: 500; line-height: 1.4; }
+    .art-stamp { position: absolute; right: 0; bottom: 10px; transform: rotate(8deg); background: var(--green); border: 3px solid var(--cream); border-radius: 100px; padding: 13px 20px; color: var(--paper); font-weight: 800; font-size: 12px; letter-spacing: .04em; }
+    section { scroll-margin-top: 90px; }
+    .section { padding: 83px 0; }
+    .section-cream { background: var(--cream); }
+    .section-paper { background: #faf7f0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .section-head { max-width: 700px; margin-bottom: 32px; }
+    .section-head h2 { color: var(--green); font-size: clamp(29px, 3vw, 39px); line-height: 1.35; letter-spacing: -.025em; margin: 13px 0 10px; }
+    .section-head p { color: var(--muted); margin: 0; font-size: 15px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 15px; }
+    .benefit { background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); padding: 25px 22px; box-shadow: var(--shadow); }
+    .benefit-number { font-family: Georgia, serif; color: #b69a61; font-weight: 700; font-size: 27px; }
+    .benefit h3 { font-size: 17px; line-height: 1.55; margin: 18px 0 8px; color: var(--green); }
+    .benefit p { font-size: 13px; line-height: 1.8; color: var(--muted); margin: 0; }
+    .tool-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 19px; }
+    .tool-card { min-width: 0; border: 1px solid var(--border); border-radius: 21px; background: var(--paper); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow); }
+    .tool-preview { aspect-ratio: 16 / 10; display: grid; place-items: center; background: #ece9df; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .tool-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tool-mono { width: 84px; height: 84px; border-radius: 22px; display: grid; place-items: center; background: var(--paper); color: var(--green); font-weight: 850; font-size: 20px; letter-spacing: .02em; border: 1px solid var(--border); box-shadow: 0 12px 26px rgba(45,52,42,.08); }
+    .tool-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .tags { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-bottom: 12px; }
+    .tag { border-radius: 100px; padding: 4px 10px; font-size: 11px; line-height: 1.5; background: #edf0e9; color: var(--green); font-weight: 750; }
+    .tag-new { background: var(--green); color: white; letter-spacing: .07em; }
+    .tag-soon { color: #767b73; background: #ebe9e4; }
+    .tool-body h3 { color: var(--green); line-height: 1.45; font-size: 20px; margin: 0 0 11px; }
+    .tool-body p { color: #626963; font-size: 14px; line-height: 1.85; margin: 0; }
+    .tool-body p + p { margin-top: 8px; }
+    .soon-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 13px; }
+    .soon-card { display: flex; gap: 15px; align-items: flex-start; background: rgba(255,253,248,.62); border: 1px solid var(--border); padding: 22px; border-radius: 17px; }
+    .soon-symbol { display: grid; place-items: center; flex: 0 0 39px; width: 39px; height: 39px; border-radius: 11px; background: #edeae1; color: #6b786d; font-size: 18px; }
+    .soon-card h3 { color: #55635a; font-size: 16px; margin: 0 0 5px; line-height: 1.4; }
+    .soon-card p { color: var(--muted); font-size: 13px; margin: 0; }
+    .soon-card .tag { margin-top: 10px; display: inline-block; }
+    .pricing { background: var(--green); color: var(--paper); }
+    .pricing .eyebrow, .pricing .section-head h2 { color: var(--paper); }
+    .pricing .section-head p { color: #d1dcd4; }
+    .price-feature { display: flex; justify-content: space-between; align-items: center; gap: 24px; background: #fffdf8; color: var(--ink); border-radius: 19px; padding: 28px 33px; margin-bottom: 28px; }
+    .price-feature small { color: var(--muted); font-size: 13px; }
+    .price-feature strong { display: block; font-size: clamp(31px, 4vw, 46px); color: var(--green); letter-spacing: -.025em; line-height: 1.3; }
+    .price-feature p { margin: 8px 0 0; color: #656c65; font-size: 14px; }
+    .price-feature .btn { flex-shrink: 0; }
+    .steps-label { font-size: 13px; font-weight: 700; margin: 0 0 13px; color: #d3dfd5; }
+    .price-steps { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 5px; align-items: end; }
+    .price-step { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 9px; }
+    .price-step span { font-size: 11px; white-space: nowrap; font-weight: 800; color: #f6edda; }
+    .price-step .bar { width: 100%; height: calc(21px + var(--level) * 9px); background: #6e8777; border-radius: 5px 5px 0 0; }
+    .price-step small { font-size: 10px; color: #d1dfd3; white-space: nowrap; }
+    .price-step.is-past .bar { background: #4f6a5b; }
+    .price-step.is-past span { color: #9fb3a6; text-decoration: line-through; }
+    .price-step.is-current .bar { background: var(--gold); }
+    .price-step.is-current span { color: #f3cc81; }
+    .price-step.is-current small { color: #f3cc81; font-weight: 800; }
+    .price-caption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 13px; margin-top: 2px; border-top: 1px solid rgba(255,255,255,.2); font-size: 12px; color: #d3ded6; }
+    .pricing-note { margin-top: 25px; border-left: 3px solid var(--gold); padding: 10px 0 10px 17px; color: #eff2ec; font-size: 15px; }
+    .pricing-note strong { color: #f5d393; }
+    .pricing-detail { margin: 16px 0 0; color: #c2d2c8; font-size: 12px; }
+    .process-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .process-card { position: relative; padding: 30px 26px; background: var(--paper); border: 1px solid var(--border); border-radius: var(--radius); }
+    .process-num { font-family: Georgia, serif; font-size: 41px; color: #bc9e65; line-height: 1; }
+    .process-card h3 { font-size: 18px; color: var(--green); margin: 19px 0 9px; }
+    .process-card p { color: #626963; margin: 0; font-size: 14px; }
+    .faq-list { max-width: 850px; margin-inline: auto; border-top: 1px solid var(--border); }
+    .faq-list details { border-bottom: 1px solid var(--border); }
+    .faq-list summary { list-style: none; cursor: pointer; color: var(--green); font-size: 16px; font-weight: 750; padding: 21px 35px 21px 0; position: relative; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; position: absolute; right: 4px; top: 16px; font-size: 27px; color: #a58a5b; font-weight: 400; }
+    .faq-list details[open] summary::after { content: "−"; }
+    .faq-answer { margin: 0 0 22px; padding-right: 33px; color: #636a65; font-size: 14px; }
+    .closing { text-align: center; padding: 83px 0 90px; }
+    .closing h2 { font-size: clamp(32px, 4vw, 47px); line-height: 1.3; color: var(--green); margin: 16px 0 12px; }
+    .closing p { color: #676c66; margin: 0 auto 25px; max-width: 560px; }
+    .closing .actions { justify-content: center; }
+
+    /* 與首頁相同的頁尾 */
+    .footer { background: #17372d; color: #bcd0c5; font-size: 12px; padding: 27px 0; }
+    .footer .container { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer a { text-decoration: underline; }
+
+    @media (max-width: 980px) {
+      .hero-layout { gap: 35px; }
+      .hero-art { min-height: 380px; padding: 20px; }
+      .grid-4 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .tool-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .price-step span { font-size: 10px; }
+    }
+    @media (max-width: 720px) {
+      .hero { padding: 54px 0 65px; }
+      .hero-layout { grid-template-columns: 1fr; gap: 36px; }
+      .hero h1 { font-size: clamp(44px, 11vw, 65px); margin: 14px 0; }
+      .hero .lede { font-size: 18px; }
+      .hero-art { width: min(100%, 450px); min-height: 345px; margin-inline: auto; }
+      .art-inner { transform: rotate(-2deg); }
+      .art-title { font-size: 30px; margin: 16px 0; }
+      .art-stamp { bottom: 0; }
+      .section { padding: 62px 0; }
+      .tool-grid, .process-grid { grid-template-columns: 1fr; }
+      .price-feature { flex-direction: column; align-items: stretch; padding: 23px; }
+      .price-feature .btn { width: 100%; }
+      .price-steps { grid-template-columns: repeat(6,minmax(0,1fr)); gap: 12px 7px; }
+      .price-step .bar { height: calc(18px + var(--level) * 5px); }
+      .price-step small { font-size: 9px; }
+      .price-caption { font-size: 11px; }
+      .closing { padding: 65px 0; }
+    }
+    @media (max-width: 460px) {
+      .actions { flex-direction: column; }
+      .actions .btn { width: 100%; }
+      .grid-4, .soon-grid { grid-template-columns: 1fr; }
+      .benefit { padding: 23px; }
+      .soon-card { padding: 19px; }
+      .price-line { align-items: flex-start; }
+      .hero-art { min-height: 315px; padding: 17px; }
+      .art-inner { padding: 14px; }
+      .art-item { padding: 8px; }
+      .art-stamp { font-size: 10px; padding: 10px 13px; }
+      .faq-list summary { font-size: 15px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+      .btn:hover { transform: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/apo-nav.css?v=20261102-2">
+  <script src="/assets/apo-nav.js?v=20261102-2" defer></script>
+</head>
+<body>
+  <header class="apo-site-header"><nav class="apo-nav" aria-label="阿珀開發網站導覽"><a class="apo-brand" href="/" aria-label="阿珀開發，回首頁"><img src="/assets/apo-logo.svg" alt="阿珀開發 ApoDevelop Logo"></a><button class="apo-menu-toggle" type="button" aria-controls="apoNavLinks" aria-expanded="false">☰ 選單</button><div class="apo-links" id="apoNavLinks"><a href="/">首頁</a><details class="apo-drop"><summary>服務項目 <span aria-hidden="true">⌄</span></summary><div class="apo-dropdown"><a href="/services/line-student/">LINE 學員管理系統</a><a href="/digital/">數位營運與流程整合</a><a href="https://payroll.apodevelop.com/" target="_blank" rel="noopener noreferrer">薪資管理系統 ↗</a><a href="/services/email-newsletter/">電子報代發與名單維護</a><a href="/apocase/">ApoCase 案件中心</a><a href="/toolbox/" aria-current="page">APO 工具箱</a></div></details><a href="/#process">合作流程</a><a href="/#about">關於阿珀</a><a class="apo-nav-cta" href="https://line.me/R/ti/p/@appdevelop" target="_blank" rel="noopener noreferrer">立即諮詢 ↗</a></div></nav></header>
+  <nav class="local-nav" aria-label="工具箱頁內導覽"><div class="container"><a href="#how">怎麼運作</a><a href="#tools">工具列表</a><a href="#pricing">價格</a><a href="#purchase">購買流程</a><a href="#faq">常見問題</a><a href="#" data-member>會員登入</a></div></nav>
+
+  <main id="top" class="is-loading">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-layout">
+        <div>
+          <span class="eyebrow">阿珀開發 APO</span>
+          <h1 id="hero-title">APO<br>工具箱</h1>
+          <p class="lede">我們做了什麼工具，你就能用什麼工具。<br>一次付費，永久使用。</p>
+          <p class="support">把日常那些麻煩的小事，交給剛剛好的工具。</p>
+          <div class="price-line" data-price-box>
+            <span class="price-label">現在加入</span>
+            <strong class="price">NT$<span data-price>—</span></strong>
+            <span class="pill" data-badge></span>
+          </div>
+          <div class="actions"><a class="btn btn-gold" data-buy href="https://line.me/R/oaMessage/@appdevelop/?%E8%B3%BC%E8%B2%B7%E5%B7%A5%E5%85%B7%E7%AE%B1" target="_blank" rel="noopener noreferrer">在 LINE 購買 <span aria-hidden="true">↗</span></a><a class="btn btn-outline" data-member href="#">已經是會員？登入</a></div>
+          <p class="microcopy">免年費・不必續約・工具附影片教學</p>
+        </div>
+        <div class="hero-art" aria-label="APO 工具箱示意畫面">
+          <div class="art-inner">
+            <div class="art-top"><span>APO / TOOLBOX</span><span class="art-dots" aria-hidden="true">● ● ●</span></div>
+            <div class="art-title">Good tools.<br>Better days.</div>
+            <div class="art-item"><span class="art-icon" aria-hidden="true">↗</span><span>Word2PDF 批次轉檔<small>把重複的轉檔工作變簡單</small></span></div>
+            <div class="art-item"><span class="art-icon" aria-hidden="true">▤</span><span>Docx2EPUB 電子書轉檔<small>整理好內容，就能開始製作</small></span></div>
+            <div class="art-item"><span class="art-icon" aria-hidden="true">▦</span><span>工具管理中心<small>常用工具，收在同一個地方</small></span></div>
+          </div>
+          <div class="art-stamp">ONE TIME · ALWAYS YOURS</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-paper" id="how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">HOW IT WORKS</span><h2 id="how-title">買一次，工具慢慢增加。</h2><p>不是訂閱制，也不需要會寫程式。找到需要的工具，跟著教學開始用。</p></div>
+        <div class="grid-4">
+          <article class="benefit"><span class="benefit-number">01</span><h3>一次付費，永久使用</h3><p>不用年費，也不用續約。加入一次，就能持續使用會員可取得的工具。</p></article>
+          <article class="benefit"><span class="benefit-number">02</span><h3>新工具持續加入</h3><p>之後上架的新工具，會員也能直接使用，不用再付一次錢。</p></article>
+          <article class="benefit"><span class="benefit-number">03</span><h3>每個工具都有影片教學</h3><p>從取得到安裝，照著影片一步一步做，就能自己開始使用。</p></article>
+          <article class="benefit"><span class="benefit-number">04</span><h3>標準版，不客製</h3><p>不含代安裝與修改。需要協助可另洽專案，會員可折抵 NT$<span data-credit>300</span> 一次。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="tools" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">IN THE TOOLBOX</span><h2 id="tools-title">現在打開，就有這些工具。</h2><p>從檔案處理到日常管理，先把常碰到的小麻煩解決。</p></div>
+        <div class="tool-grid" data-live>
+          <article class="tool-card"><div class="tool-preview"><span class="tool-mono" aria-hidden="true">PDF</span></div><div class="tool-body"><div class="tags"><span class="tag tag-new">NEW</span><span class="tag">下載安裝（mac／Windows）</span></div><h3>Word2PDF 批次轉檔</h3><p>Word、Excel、圖片拖進來，批次轉成 PDF。可以一次丟很多檔案，PDF 存在原本的資料夾。電腦需要安裝 Microsoft Office。</p></div></article>
+          <article class="tool-card"><div class="tool-preview"><span class="tool-mono" aria-hidden="true">EPUB</span></div><div class="tool-body"><div class="tags"><span class="tag tag-new">NEW</span><span class="tag">線上工具</span></div><h3>Docx2EPUB 電子書轉檔</h3><p>Word 檔一鍵轉成 EPUB 電子書。填好書名、作者、封面和版權頁就能下載，章節目錄自動產生。</p></div></article>
+          <article class="tool-card"><div class="tool-preview"><span class="tool-mono" aria-hidden="true">▦</span></div><div class="tool-body"><div class="tags"><span class="tag tag-new">NEW</span><span class="tag">Google 試算表副本</span></div><h3>工具管理中心</h3><p>把做過的工具、網址、版本和使用方式收在同一個地方，隔很久也查得到。資料放在你自己的 Google 試算表。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-paper" id="upcoming" aria-labelledby="upcoming-title" data-soon-section>
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">COMING NEXT</span><h2 id="upcoming-title">接下來，還會有這些。</h2><p>以下工具正在準備中，正式推出後會放進工具箱；上架時間依開發進度調整。</p></div>
+        <div class="soon-grid" data-soon>
+          <article class="soon-card"><span class="soon-symbol" aria-hidden="true">☁</span><div><h3>FileBot 雲端收檔</h3><p>在 LINE 傳檔案，自動存進 Google 雲端。</p><span class="tag tag-soon">準備中</span></div></article>
+          <article class="soon-card"><span class="soon-symbol" aria-hidden="true">▤</span><div><h3>資料蒐集智慧小幫手</h3><p>表單收件自動改檔名、分資料夾，還會產生催繳名單。</p><span class="tag tag-soon">準備中</span></div></article>
+          <article class="soon-card"><span class="soon-symbol" aria-hidden="true">＄</span><div><h3>支領單與稅額試算</h3><p>自動算稅額與二代健保，一鍵產出支領單。</p><span class="tag tag-soon">準備中</span></div></article>
+          <article class="soon-card"><span class="soon-symbol" aria-hidden="true">▦</span><div><h3>自選時段報名</h3><p>開放時段讓大家自己選，額滿自動關閉。</p><span class="tag tag-soon">準備中</span></div></article>
+          <article class="soon-card"><span class="soon-symbol" aria-hidden="true">▣</span><div><h3>進銷存微型系統</h3><p>商品、進貨、銷售、庫存一張表管好。</p><span class="tag tag-soon">準備中</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">ONE-TIME PRICE</span><h2 id="pricing-title">先加入的人，用現在的價格，<br>持續使用以後的新工具。</h2><p>價格會隨著新工具上架調整；已購買的會員不用補差價。</p></div>
+        <div class="price-feature">
+          <div>
+            <small>目前售價</small>
+            <strong>NT$<span data-price>—</span></strong>
+            <span class="pill" data-badge></span>
+            <p data-price-note>早鳥價 NT$350，限前 10 名，開賣後一個月內適用；名額或時間先到者為準。</p>
+          </div>
+          <a class="btn btn-gold" data-buy href="https://line.me/R/oaMessage/@appdevelop/?%E8%B3%BC%E8%B2%B7%E5%B7%A5%E5%85%B7%E7%AE%B1" target="_blank" rel="noopener noreferrer">在 LINE 購買 <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="steps-label">價格階梯｜一次付費，不用續約</p>
+        <div class="price-steps" role="img" aria-label="價格階梯：早鳥 350 元、之後 600 元，接著每兩個月調漲 300 元，依序為 900、1200、1500、1800、2100、2400、2700、3000、3300 元，最高 3600 元。">
+          <div class="price-step is-current" data-step="350" style="--level:1"><span>350</span><div class="bar"></div><small>早鳥</small></div>
+          <div class="price-step" data-step="600" style="--level:2"><span>600</span><div class="bar"></div><small>正式</small></div>
+          <div class="price-step" data-step="900" style="--level:3"><span>900</span><div class="bar"></div><small>第 1 次</small></div>
+          <div class="price-step" data-step="1200" style="--level:4"><span>1,200</span><div class="bar"></div><small>第 2 次</small></div>
+          <div class="price-step" data-step="1500" style="--level:5"><span>1,500</span><div class="bar"></div><small>第 3 次</small></div>
+          <div class="price-step" data-step="1800" style="--level:6"><span>1,800</span><div class="bar"></div><small>第 4 次</small></div>
+          <div class="price-step" data-step="2100" style="--level:7"><span>2,100</span><div class="bar"></div><small>第 5 次</small></div>
+          <div class="price-step" data-step="2400" style="--level:8"><span>2,400</span><div class="bar"></div><small>第 6 次</small></div>
+          <div class="price-step" data-step="2700" style="--level:9"><span>2,700</span><div class="bar"></div><small>第 7 次</small></div>
+          <div class="price-step" data-step="3000" style="--level:10"><span>3,000</span><div class="bar"></div><small>第 8 次</small></div>
+          <div class="price-step" data-step="3300" style="--level:11"><span>3,300</span><div class="bar"></div><small>第 9 次</small></div>
+          <div class="price-step" data-step="3600" style="--level:12"><span>3,600</span><div class="bar"></div><small>上限</small></div>
+        </div>
+        <div class="price-caption"><span>NT$350 起</span><span>後續每兩個月 +NT$300</span><span>最高 NT$3,600</span></div>
+        <div class="pricing-note"><strong>越早加入越划算。</strong> 每次調漲都會同時上架新工具，但已經買過的人，未來都不用再付錢。</div>
+        <p class="pricing-detail">早鳥結束後售價 NT$600；其後每兩個月調漲 NT$300，至 NT$3,600 為止。實際價格及早鳥名額以購買時公告為準。</p>
+      </div>
+    </section>
+
+    <section class="section section-paper" id="purchase" aria-labelledby="purchase-title">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">THREE SIMPLE STEPS</span><h2 id="purchase-title">三個步驟，開始使用。</h2><p>不用研究複雜的購物流程，透過阿珀官方 LINE 就能完成。</p></div>
+        <div class="process-grid">
+          <article class="process-card"><div class="process-num">01</div><h3>加入官方 LINE</h3><p>加入阿珀開發官方 LINE，輸入「工具箱」，取得購買資訊。</p></article>
+          <article class="process-card"><div class="process-num">02</div><h3>填 Email、完成轉帳</h3><p>留下 Email，轉帳完成後回報帳號末五碼，讓我們核對款項。</p></article>
+          <article class="process-card"><div class="process-num">03</div><h3>登入會員，取得工具</h3><p>確認收款後，使用 Email 收取驗證碼登入會員頁，開始使用。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-cream" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head" style="margin-inline:auto;text-align:center"><span class="eyebrow">QUESTIONS & ANSWERS</span><h2 id="faq-title">你可能還想知道</h2><p>購買前常見的問題，都整理在這裡。</p></div>
+        <div class="faq-list">
+          <details><summary>一次付費真的永久可以用嗎？</summary><p class="faq-answer">是的，一次付費即可持續使用工具箱，不收年費，也不用續約。</p></details>
+          <details><summary>之後的新工具要另外付錢嗎？</summary><p class="faq-answer">不用。之後正式上架的新工具，會員都能直接使用。</p></details>
+          <details><summary>我不會安裝怎麼辦？</summary><p class="faq-answer">每個工具都有影片教學，可以照著操作。工具箱不包含代安裝服務；如果需要我們協助，可另外洽詢專案服務，會員可折抵 NT$300 一次。</p></details>
+          <details><summary>可以幫我改成我要的樣子嗎？</summary><p class="faq-answer">工具箱提供的是標準版，不包含客製修改。若需要符合自己工作流程的版本，可以另外洽詢阿珀的外包開發服務。</p></details>
+          <details><summary>工具壞掉怎麼辦？</summary><p class="faq-answer">請在官方 LINE 輸入「問題回報」，描述遇到的狀況。我們修復後會統一更新。工具會持續維護與調整，但不保證每個工具都會持續推出更新版本。</p></details>
+          <details><summary>需要準備什麼？</summary><p class="faq-answer">建議準備一個 Google 帳號，以使用部分 Google 相關工具。Word2PDF 則需要在電腦上安裝 Microsoft Office，並符合該工具的使用環境要求。</p></details>
+          <details><summary>有推薦碼嗎？</summary><p class="faq-answer">有，使用合作夥伴提供的推薦碼，可以依當期活動規則享有折扣。</p></details>
+          <details><summary>可以退費嗎？</summary><p class="faq-answer">數位商品開通後，原則上恕不接受退費；如依法享有解除權或其他法定權利，仍依適用法令辦理。購買前請先確認工具的功能與使用需求。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="container"><span class="eyebrow">READY WHEN YOU ARE</span><h2 id="closing-title">越早加入越划算</h2><p>價格每兩個月調漲一次，買過的人永遠不用再付錢。從現在需要的工具開始，慢慢累積更多方便。</p><div class="actions"><a class="btn btn-gold" data-buy href="https://line.me/R/oaMessage/@appdevelop/?%E8%B3%BC%E8%B2%B7%E5%B7%A5%E5%85%B7%E7%AE%B1" target="_blank" rel="noopener noreferrer">在 LINE 購買 <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+  </main>
+  <footer class="footer"><div class="container"><span>© <span id="year">2026</span> 阿珀開發 ApoDevelop · 工具為標準版，恕不提供客製與代安裝</span><span><a href="/">回到首頁</a>　·　<a href="#top">回到頁首 ↑</a></span></div></footer>
+
+  <script>
+    /* 共用導覽列由 /assets/apo-nav.js 管理；本頁只負責讀取即時價格與工具清單 */
+    (function () {
+      var API = 'https://script.google.com/macros/s/AKfycbxGCbfs94mNl8L4dP3rmpwgTd_XjtujQDO-s9mioZyS9MIrg_OSV3GTvw1ujDTNgE-N/exec?p=api';
+      var MEMBER = 'https://script.google.com/macros/s/AKfycbxGCbfs94mNl8L4dP3rmpwgTd_XjtujQDO-s9mioZyS9MIrg_OSV3GTvw1ujDTNgE-N/exec?p=member';
+      var main = document.getElementById('top');
+      var $all = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+      var money = function (n) { return Number(n).toLocaleString('en-US'); };
+      document.getElementById('year').textContent = new Date().getFullYear();
+      $all('[data-member]').forEach(function (a) { a.href = MEMBER; });
+
+      function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
+      function mono(name) { var n = String(name), m = n.match(/2([A-Za-z]{2,4})/) || n.match(/([A-Za-z]{2,6})/); return m ? m[1].toUpperCase() : n.slice(0, 2); }
+
+      function toolCard(t) {
+        var card = el('article', 'tool-card'), pv = el('div', 'tool-preview');
+        if (t.image) { var img = el('img'); img.src = t.image; img.alt = t.name + ' 畫面'; img.loading = 'lazy'; pv.appendChild(img); }
+        else { var m = el('span', 'tool-mono', mono(t.name)); m.setAttribute('aria-hidden', 'true'); pv.appendChild(m); }
+        var body = el('div', 'tool-body'), tags = el('div', 'tags');
+        if (t.isNew) tags.appendChild(el('span', 'tag tag-new', 'NEW'));
+        if (t.getType) tags.appendChild(el('span', 'tag', t.getType));
+        body.appendChild(tags); body.appendChild(el('h3', '', t.name));
+        if (t.intro) body.appendChild(el('p', '', t.intro));
+        if (t.detail) body.appendChild(el('p', '', t.detail));
+        card.appendChild(pv); card.appendChild(body);
+        return card;
+      }
+      function soonCard(t) {
+        var card = el('article', 'soon-card'), sym = el('span', 'soon-symbol', '＋'), box = el('div');
+        sym.setAttribute('aria-hidden', 'true');
+        box.appendChild(el('h3', '', t.name)); if (t.intro) box.appendChild(el('p', '', t.intro));
+        box.appendChild(el('span', 'tag tag-soon', '準備中'));
+        card.appendChild(sym); card.appendChild(box);
+        return card;
+      }
+
+      function badgeText(d) {
+        if (d.phase === 'early') return '早鳥剩 ' + d.earlyLeft + ' 名';
+        if (d.phase === 'soon') return d.launchText + ' 開賣';
+        if (d.phase === 'unset') return '即將開賣';
+        if (d.phase === 'regular' && d.nextChangeText) return d.nextChangeText + ' 起 NT$' + money(d.nextPrice);
+        return '';
+      }
+      function noteText(d) {
+        if (d.phase === 'early') return '早鳥價限前 ' + d.earlyCount + ' 名，最晚到 ' + d.earlyEndText + '；名額或時間先到者為準。之後售價 NT$' + money(d.nextPrice) + '。';
+        if (d.phase === 'soon') return d.launchText + ' 開賣，前 ' + d.earlyCount + ' 名享早鳥價 NT$' + money(d.price) + '。';
+        if (d.phase === 'regular') return '下次調漲：' + d.nextChangeText + ' 起 NT$' + money(d.nextPrice) + '。已購買的會員不用補差價。';
+        if (d.phase === 'max') return '已是最終價格，之後不再調漲。';
+        return '';
+      }
+
+      function apply(d) {
+        if (!d || !d.ok) { fail(); return; }
+        $all('[data-price]').forEach(function (n) { n.textContent = money(d.price); });
+        $all('[data-badge]').forEach(function (n) { n.textContent = badgeText(d); });
+        $all('[data-price-note]').forEach(function (n) { var t = noteText(d); if (t) n.textContent = t; });
+        $all('[data-credit]').forEach(function (n) { if (d.credit) n.textContent = money(d.credit); });
+        if (d.buyUrl) $all('[data-buy]').forEach(function (a) { a.href = d.buyUrl; });
+        if (d.memberUrl) $all('[data-member]').forEach(function (a) { a.href = d.memberUrl; });
+        var hit = false;
+        $all('[data-step]').forEach(function (s) {
+          var v = Number(s.getAttribute('data-step'));
+          s.classList.toggle('is-current', v === Number(d.price));
+          s.classList.toggle('is-past', v < Number(d.price));
+          if (v === Number(d.price)) hit = true;
+        });
+        if (!hit) $all('[data-step]').forEach(function (s) { s.classList.remove('is-past'); });
+        if (d.live && d.live.length) { var g = document.querySelector('[data-live]'); g.innerHTML = ''; d.live.forEach(function (t) { g.appendChild(toolCard(t)); }); }
+        var soonSec = document.querySelector('[data-soon-section]');
+        if (d.soon && d.soon.length) { var s = document.querySelector('[data-soon]'); s.innerHTML = ''; d.soon.forEach(function (t) { s.appendChild(soonCard(t)); }); }
+        else if (d.soon) soonSec.hidden = true;
+        main.classList.remove('is-loading');
+      }
+      function fail() {
+        main.classList.remove('is-loading');
+        $all('[data-price-box], .price-feature strong').forEach(function (n) { n.hidden = true; });
+        $all('[data-badge]').forEach(function (n) { n.textContent = ''; });
+        $all('[data-price-note]').forEach(function (n) { n.textContent = '目前價格與早鳥名額，請在官方 LINE 輸入「工具箱」查看。'; });
+        var box = document.querySelector('[data-price-box]');
+        if (box) { var p = el('p', 'price-fallback', '目前價格請在官方 LINE 輸入「工具箱」查看。'); box.parentNode.insertBefore(p, box); }
+      }
+
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+      fetch(API, ctrl ? { signal: ctrl.signal } : {})
+        .then(function (r) { return r.json(); })
+        .then(function (d) { clearTimeout(timer); apply(d); })
+        .catch(function () { clearTimeout(timer); fail(); });
+    })();
+  </script>
+</body>
+</html>
