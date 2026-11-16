@@ -43,7 +43,7 @@
   .actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 52px; padding: 12px 25px; border: 1px solid transparent; border-radius: 11px; text-decoration: none; font-size: 15px; font-weight: 800; transition: transform .2s ease, background .2s ease; }
   .btn:hover { transform: translateY(-2px); }
-  .btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .btn:focus-visible, a:focus-visible, .faq-list summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
   .btn-gold { background: var(--gold); color: var(--green-dark); box-shadow: 0 7px 20px rgba(94, 72, 30, .13); }
   .btn-gold:hover { background: #d6b77b; }
   .btn-outline { border-color: var(--green); color: var(--green); background: transparent; }
@@ -141,11 +141,11 @@
 
   /* 常見問題 */
   .faq-list { max-width: 820px; margin-inline: auto; border-top: 1px solid var(--border); }
-  details { border-bottom: 1px solid var(--border); }
-  summary { list-style: none; cursor: pointer; color: var(--green); font-size: 16px; font-weight: 750; padding: 20px 36px 20px 0; position: relative; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; position: absolute; right: 4px; top: 15px; font-size: 26px; color: #a58a5b; font-weight: 400; }
-  details[open] summary::after { content: "−"; }
+  .faq-list details { border-bottom: 1px solid var(--border); }
+  .faq-list summary { list-style: none; cursor: pointer; color: var(--green); font-size: 16px; font-weight: 750; padding: 20px 36px 20px 0; position: relative; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; position: absolute; right: 4px; top: 15px; font-size: 26px; color: #a58a5b; font-weight: 400; }
+  .faq-list details[open] summary::after { content: "−"; }
   .faq-answer { margin: 0 0 22px; padding-right: 32px; color: #5f6661; font-size: 15px; }
 
   /* 結尾 */
